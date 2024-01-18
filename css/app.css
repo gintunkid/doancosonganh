@@ -1,0 +1,109 @@
+
+.container{
+    max-width: 960px;
+    margin:0px auto;
+}
+#header{
+    background-color: #bdb7a1;
+    opacity: 8;
+}
+
+#sdt:hover{
+    color: blue;
+    text-decoration: line-through;
+}
+
+#logo:hover{
+    color: white;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+}
+
+#main-menu{
+    display: flex;
+}
+ 
+#main-menu{
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#main-menu li{
+    position: relative;
+}
+
+#main-menu li a{
+    color: black;
+    display: block;
+    padding: 18px 20px;
+    text-decoration: none;
+}
+
+#main-menu ul.sub-menu{
+    position: relative;
+    background-color:#bdb7a1;
+    padding: 15px 0px;
+    list-style: none;
+    width: 200px;
+    border: 1px solid #bdb7a1;
+    display: none;
+    color: black;
+}
+
+#main-menu li:hover ul.sub-menu{
+    display: block;
+}
+
+
+#main-menu ul.sub-menu a{
+    padding: 8px 15px;
+    border-bottom: 1px solid rgb(87, 87, 87);
+    left: 0;
+    text-align: center;    
+}
+#main-menu ul.sub-menu li:hover a{
+    border-bottom: 1px solid rgb(56, 56, 56);   
+}
+
+#main-menu ul.sub-menu li:last-child a{
+    border: none;
+}
+
+/* thiết lập border khi hover */
+#main-menu>li>a{
+    position: relative;
+}
+
+#main-menu>li>a::before{
+    content: "";
+    height: 4px;
+    width: 0px;
+    background: white;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    transition: 0,25s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+ 
+#main-menu>li:hover>a::before{
+    width: 100%;
+}
+
+#main-menu>li.has-child::after{
+    content: "\f52b";
+    color: #f5f5f5;
+    position: relative;
+    top:0px;
+    right:0px;
+    padding: 18px 0px;   
+}
+
+#main-menu .sub-menu li:hover a{
+    color: white;
+}
+
+

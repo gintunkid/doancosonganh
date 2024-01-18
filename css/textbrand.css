@@ -1,0 +1,30 @@
+
+#textbrand{
+    color: rgb(red, green, blue);
+    animation: rgb-animation 5s infinite alternate;
+}
+
+@keyframes rgb-animation {
+    0% {
+        color: silver;
+    }
+    50% {
+        color: #6c5955;
+    }
+    100% {
+        color: #302523;
+    }
+}
+
+#textbrand{
+    width: 100%;
+    font-size: 100px;
+    height: 100px;
+    position: relative;
+    font-family:'Courier New', Courier, monospace;
+    font-weight: 10;
+    text-align: center;
+    text-shadow: grey 4px 10px 10px;
+    color: rgb(102, 102, 102);
+}
+
