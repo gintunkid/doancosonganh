@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin-Product</title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        .formContainer {
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            margin: 10px;
+        }
+        
+        .formContainer h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .formContainer input[type="text"], 
+        .formContainer input[type="number"], 
+        .formContainer input[type="file"], 
+        .formContainer button {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .formContainer input[type="file"] {
+            padding: 10px;
+        }
+
+        .formContainer button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .formContainer button:hover {
+            background-color: #0056b3;
+        }
+
+        .formContainer input:focus, 
+        .formContainer button:focus {
+            outline: none;
+            border: 1px solid #007BFF;
+        }
+
+        .formContainer input::placeholder {
+            color: #888;
+        }
+
+        .formGroup {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .formGroup .formContainer {
+            flex: 1;
+            max-width: calc(33.33% - 20px);
+        }
+
+        @media (max-width: 768px) {
+            .formGroup .formContainer {
+                max-width: 100%;
+            }
+        }
+        .productDisplay {
+            flex: 1; /* Chiếm không gian còn lại */
+            max-width: 0 auto ; /* Hoặc kích thước bạn muốn */
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        #productsContainer .product img {
+    width: 100%; /* Chiều rộng 100% của phần tử chứa */
+    height: auto; /* Chiều cao tự động để giữ tỉ lệ */
+    max-width: 130px; /* Chiều rộng tối đa là 200px (hoặc giá trị bạn muốn) */
+    border-radius: 8px; /* Bo góc cho hình ảnh (tùy chọn) */
+    }   
+    .product h3 {
+    font-size: 14px; /* Thay đổi kích thước chữ theo ý muốn */
+    margin: 0; /* Bỏ margin nếu cần */
+    }
+    #productsContainer {
+    display: flex; /* Sử dụng Flexbox để xếp hàng */
+    flex-wrap: wrap; /* Cho phép các sản phẩm xuống dòng nếu không đủ chỗ */
+    gap: 10px; /* Khoảng cách giữa các sản phẩm */
+    padding-top: 10px;
+    }
+
+    .product {
+    flex: 1 1 30%; /* Chiếm 30% chiều rộng của container, có thể điều chỉnh */
+    box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước */
+    }
+    </style>
+
+</head>
+
+<body>
+<div class="container">
+    <div class="navigation">
+        <ul>
+            <li>
+                <a href="">
+                    <span class="icon">
+                        <ion-icon name="finger-print-outline"></ion-icon>
+                    </span>
+                    <span class="title">BookHeaven Admin</span>
+                </a>
+            </li>
+             <li>
+                <a href="../admin_main.html">
+                    <span class="icon">
+                        <ion-icon name="home-outline"></ion-icon>
+                    </span>
+                    <span class="title">Tổng quan</span>
+                </a>
+            </li>
+            <li>
+                <a href="../user.html">
+                    <span class="icon">
+                        <ion-icon name="people-outline"></ion-icon>
+                    </span>
+                    <span class="title">Khách hàng</span>
+                </a>
+            </li>
+            <li>
+                <a href="admin_selecttoadd.html">
+                    <span class="icon">
+                        <ion-icon name="chatbubble-outline"></ion-icon>
+                    </span>
+                    <span class="title">Sản Phẩm</span>
+                </a>
+            </li>
+            <li>
+                <a href="../orders-admin.html">
+                    <span class="icon">
+                        <ion-icon name="receipt-outline"></ion-icon>
+                    </span>
+                    <span class="title">Đơn Hàng</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span class="icon">
+                        <ion-icon name="settings-outline"></ion-icon>
+                    </span>
+                    <span class="title">Cài đặt</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span class="icon">
+                        <ion-icon name="log-out-outline"></ion-icon>
+                    </span>
+                    <span class="title">Đăng xuất</span>
+                </a>
+            </li>
+
+            <!-- Add other navigation items here -->
+        </ul>
+    </div>
+    
+
+        </ul>
+    </div>
+    <!---------------------- MAIN ------------------->
+
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+
+            <div class="search">
+                <label>
+                    <input type="text" placeholder="Tìm kiếm tại đây">
+                    <ion-icon name="search-outline"></ion-icon>
+                </label>
+            </div>
+
+            <div class="user">
+                <img src="../../img/user.png" alt="">
+            </div>
+        </div>
+
+
+        <!-- Forms for submitting data to different Firestore collections -->
+        <div class="formGroup">
+            <!-- Form 1: Products Collection -->
+            <div class="formContainer">
+                <h2>Thêm Sản Phẩm</h2>
+                <form id="dataForm">
+                    <input type="text" id="documentId" placeholder="Document ID" required><br>
+                    <input type="text" id="name" placeholder="Tên sản phẩm" required><br>
+                    <input type="text" id="description" placeholder="Mô tả sản phẩm" required><br>
+                    <input type="file" id="image" accept="image/*" required><br>
+                    <input type="number" id="price" placeholder="Giá" required><br>
+                    <input type="number" id="rate" placeholder="Đánh giá" required><br>
+                    <input type="number" id="sold" placeholder="Đã bán" required><br>
+                    
+                    <label for="productType">Chọn loại sản phẩm:</label>
+                    <select id="productType" required>
+                        <option value="comic">Truyện Comic</option>
+                        <option value="snn">Sách Ngoại Ngữ</option>
+                        <option value="tlkn">Sách Kỹ Năng Sống</option>
+                        <option value="giaoduc">Đồ chơi giáo dục</option>
+                        <option value="mohinh">Đồ chơi mô hình</option>
+                        <option value="vpp">Dụng cụ văn phòng</option>
+                        <option value="butviet">Bút viết</option>
+                        <option value="giay">Sản phẩm về giấy</option>
+                    </select>
+                    
+                    <button type="submit">Gửi</button>
+                </form>
+            </div>
+            <div class="productDisplay">
+                <h2>Sản Phẩm</h2> 
+                <label for="categorySelect">Chọn thể loại sản phẩm:</label>
+                <select id="categorySelect">
+                    <option value="comic">Truyện Comic</option>
+                    <option value="snn">Sách Ngoại Ngữ</option>
+                    <option value="tlkn">Sách Kỹ Năng Sống</option>
+                    <option value="giaoduc">Đồ chơi giáo dục</option>
+                    <option value="mohinh">Đồ chơi mô hình</option>
+                    <option value="vpp">Dụng cụ văn phòng</option>
+                    <option value="butviet">Bút viết</option>
+                    <option value="giay">Sản phẩm về giấy</option>
+                </select>
+                <div id="productsContainer">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="module" src="/js admin/admin.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="/js/admin.js"></script>   
+</body>
+</html>
+

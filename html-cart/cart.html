@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mesach-bookhaven</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/home.html">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script type="module" src="/js/firebase-config.js"></script>
+    <script type="module" src="/js/cart.js"></script>
+    <script src="../js/checklogin.js"></script>
+    <script type="module">
+        import { displayCart, updateQuantity, removeItem } from '../js/cart.js';
+        window.updateQuantity = updateQuantity;
+        window.removeItem = removeItem;
+    </script>
+</head>
+<body>
+    <section class="top">
+        <div class="container">
+            <div class="row">
+                <div class="top-logo">
+                    <img src="/img/logo.png" alt="">
+                </div>
+                <div class="top-menu-items">
+                    <ul>
+                        <li><a href="/home.html">Home</a></li>
+                        <li>
+                            Nike
+                            <ul class="top-menu-item">
+                                <li><a href="/html-cartegory/nikenam.html">Nam</a></li>
+                                <li><a href="/html-cartegory/nikenu.html">Nữ</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            Adidas
+                            <ul class="top-menu-item">
+                                <li><a href="/html-cartegory/adidasnam.html">Nam</a></li>
+                                <li><a href="/html-cartegory/adidasnu.html">Nữ</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            Other-Brand
+                            <ul class="top-menu-item">
+                                <li><a href="/html-cartegory/daygiay.html">Dây giày</a></li>
+                                <li><a href="/html-cartegory/vesinhgiay.html">Crep Protect - Vệ sinh giày</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="top-menu-icons">
+                    <ul>
+                        <li>
+                            <div class="search-bar" style="display: none;">
+                                <input type="text" id="searchInput" placeholder="Nhập từ cần tìm">
+                                <button id="searchButton" class="fas fa-search"></button>
+                            </div>
+                        </li>
+                        <li><a href="/login-admin/login.html"><i class="fa-regular fa-user"></i></a></li>
+                        <li><a href="/html-cart/cart.html"><i id="cart-icon"class="fas fa-shopping-cart"></i></a><span id="cart-count">0</span></li>                    
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+<!------------------ CART------------------->
+<section class="cart">
+    <div class="container">
+        <div class="cart-top-wrap">
+            <div class="cart-top">
+                <div class="cart-top-cart cart-top-item">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="cart-top-adress cart-top-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="cart-top-payment cart-top-item">
+                    <i class="fas fa-money-check-alt"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="cart-content">
+            <div class="cart-content-left">
+                <table>
+                    <tr>
+                        <th>Sản phẩm </th>
+                        <th>Tên sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Thành tiền</th>
+                        <th>Xóa</th>
+                    </tr>
+                    <tr>
+                        <td><img src="" alt=""></td>
+                        <td><p>Tên sản phẩm</p></td>
+                        <td><img src="" alt=""></td>
+                        <td><input type="number" value="1" min="1"></td>
+                        <td><p>...<sub>đ</sub></p></td>
+                        <td><span>X</span></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="cart-content-right">
+                <table>
+                    <tr>
+                        <th colspan="2">Tổng tiền giỏ hàng</th>
+                    </tr>
+                    <tr>
+                        <td>TỔNG SẢM PHẨM</td>
+                        <td id="total-quantity">0</td> <!-- ID để cập nhật số lượng sản phẩm -->
+                    </tr>
+                    <tr>
+                        <td>TỔNG TIỀN HÀNG</td>
+                        <td id="total-price">0<sub>đ</sub></td> <!-- ID để cập nhật tổng tiền -->
+                    </tr>
+                    <tr>
+                        <td>TẠM TÍNH</td>
+                        <td id="subtotal-price" style="color: black;font-weight: bold;">0<sub>đ</sub></td> <!-- ID để cập nhật tạm tính -->
+                    </tr>
+                </table>
+                <div class="cart-content-right-text">
+                    <p style="font-weight:bold">Cảm ơn bạn đã quan tâm đến sản phẩm của chúng tôi</p>
+                </div>
+                <div class="cart-content-right-button">
+                    <button onclick="window.history.back()">TIẾP TỤC MUA SẢN PHẨM</button>
+                    <button id="pay">THANH TOÁN</button>
+                </div>
+                <div class="cart-content-right-dangnhap">
+                    <p>TÀI KHOẢN BOOK HAVEN</p>
+                    <p>Hãy <a href="/login-admin/login.html" style="color: #333;">Đăng nhập </a>tài khoản của bạn để nhận được thông báo</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+ 
+<!-------------------- footer --------------------->
+<section class="footer">
+    <div class="footer-container">
+        <p>Tải ứng dụng <a href="">Mê sách</a></p>
+        <div class="app-google">
+            <a href="https://www.apple.com/app-store/"><img src="/img/Screenshot 2024-05-15 003849.png" alt=""></a>
+            <a href="https://play.google.com/store/games?hl=vi&pli=1"><img src="/img/Screenshot 2024-05-15 003813.png" alt=""></a>
+        </div>
+        <div class="footer-items">
+            <li><a href=""><img src="/img/Screenshot 2024-05-15 003506.png" alt=""></a></li>
+            <li><a href="">Liên hệ</a></li>
+            <li><a href="">Tuyển dụng</a></li>
+            <li><a href="">Giới thiệu</a></li>
+            <li><a href=""><i class="fab fa-facebook-f"></i></a><a href=""><i class="fab fa-youtube"></i></a></li>
+        </div>
+        <div class="footer-text">
+            Địa chỉ đăng ký: 254/5, đường Lê Văn Thọ, phường 11, quận Gò Vấp
+            Đặt hàng online: 0797268602
+        </div>
+        <div class="footer-bottom">
+            @ Mê sách - Book Haven
+        </div>
+    </div>
+</section>
+<script src="/js/function.js"></script>
+</body>
+</html>

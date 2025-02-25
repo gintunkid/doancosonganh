@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookHeaven-Admin</title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script type="module" src="/js admin/xoasua.js"></script>   
+</head>
+<style>
+    #productForm {
+        background-color: #f9f9f9; /* Màu nền cho form */
+        border: 1px solid #ccc; /* Đường viền */
+        border-radius: 5px; /* Bo góc */
+        padding: 20px; /* Khoảng cách bên trong */
+        max-width: 500px; /* Chiều rộng tối đa */
+        margin: 20px auto; /* Căn giữa form */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+    }
+
+    #productForm h2 {
+        text-align: center; /* Căn giữa tiêu đề */
+        color: #333; /* Màu chữ tiêu đề */
+    }
+
+    #productForm label {
+        display: block; /* Hiển thị label dưới dạng khối */
+        margin-bottom: 5px; /* Khoảng cách dưới label */
+        font-weight: bold; /* Chữ đậm */
+    }
+
+    #productForm input,
+    #productForm textarea {
+        width: 100%; /* Chiều rộng 100% */
+        padding: 10px; /* Khoảng cách bên trong */
+        margin-bottom: 15px; /* Khoảng cách dưới input/textarea */
+        border: 1px solid #ccc; /* Đường viền */
+        border-radius: 4px; /* Bo góc */
+        box-sizing: border-box; /* Đảm bảo padding không làm tăng chiều rộng */
+    }
+
+    #productForm button {
+        background-color: #4CAF50; /* Màu nền cho nút cập nhật */
+    color: white; /* Màu chữ */
+    padding: 10px 15px; /* Khoảng cách bên trong */
+    border: none; /* Không có đường viền */
+    border-radius: 4px; /* Bo góc */
+    cursor: pointer; /* Con trỏ khi di chuột */
+    width: 100%; /* Chiều rộng 100% */
+    margin-bottom: 10px; /* Khoảng cách giữa các nút */
+}
+
+#productForm button#deleteButton {
+    background-color: #f44336; /* Màu nền cho nút xóa (đỏ) */
+}
+
+#productForm button:hover {
+    opacity: 0.9; /* Hiệu ứng khi hover */
+}
+
+#productForm button#deleteButton:hover {
+    opacity: 0.9; /* Hiệu ứng khi hover cho nút xóa */
+}
+</style>
+
+<body>
+<div class="container">
+    <div class="navigation">
+        <ul>
+            <li>
+                <a href="/login-admin/admin_main.html">
+                    <span class="icon">
+                        <ion-icon name="finger-print-outline"></ion-icon>
+                    </span>
+                    <span class="title">BookHeaven Admin</span>
+                </a>
+            </li>
+            <li>
+                <a href="/login-admin/admin_main.html">
+                    <span class="icon">
+                        <ion-icon name="home-outline"></ion-icon>
+                    </span>
+                    <span class="title">Tổng quan</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span class="icon">
+                        <ion-icon name="people-outline"></ion-icon>
+                    </span>
+                    <span class="title">Khách hàng</span>
+                </a>
+            </li>
+            <li>
+                <a href="addsp/admin_selecttoadd.html">
+                    <span class="icon">
+                        <ion-icon name="chatbubble-outline"></ion-icon>
+                    </span>
+                    <span class="title">Sản Phẩm</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span class="icon">
+                        <ion-icon name="receipt-outline"></ion-icon>
+                    </span>
+                    <span class="title">Đơn Hàng</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span class="icon">
+                        <ion-icon name="settings-outline"></ion-icon>
+                    </span>
+                    <span class="title">Cài đặt</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span class="icon">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                    </span>
+                    <span class="title">Mật khẩu</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span class="icon">
+                        <ion-icon name="log-out-outline"></ion-icon>
+                    </span>
+                    <span class="title">Đăng xuất</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!---------------------- MAIN ------------------->
+    <div class="main">
+        <div class="topbar">
+            <div class="search">
+                <label>
+                    <input type="text" placeholder="Tìm kiếm tại đây">
+                    <ion-icon name="search-outline"></ion-icon>
+                </label>
+            </div>
+
+            <div class="user">
+                <img src="../img/user.png" alt="">
+            </div>
+        </div>
+        <form id="productForm">
+            <input type="hidden" id="productId" name="productId">
+            <label for="name">Tên sản phẩm:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="description">Mô tả:</label>
+            <textarea id="description" name="description" required></textarea>
+            
+            <label for="price">Giá:</label>
+            <input type="number" id="price" name="price" required>
+            
+            <label for="imageFile">Tải ảnh lên:</label>
+            <input type="file" id="imageFile" name="imageFile" accept="image/*">
+            
+            <label for="productType">Chọn loại sản phẩm:</label>
+            <select id="productType" required>
+                <option value="comic">Truyện Comic</option>
+                <option value="foreignBook">Sách Ngoại Ngữ</option>
+                <option value="psychology">Sách Kỹ Năng Sống</option>
+                <option value="stationery">Dụng cụ văn phòng</option>
+                <option value="educationalToy">Đồ chơi giáo dục</option>
+                <option value="model">Mô hình</option>
+                <option value="butviet">Bút viết</option>
+                <option value="giay">Sản phẩm về giấy</option>
+            </select>
+            
+            <button type="submit" id="updateButton">Cập nhật sản phẩm</button>
+            <button type="button" id="deleteButton">Xóa sản phẩm</button>
+        </form>
+    </div>   
+</div>
+</body>
+</html>

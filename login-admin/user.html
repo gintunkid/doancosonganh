@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin-User</title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/table.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="../js admin/checkadmin.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="navigation">
+        <ul>
+            <li>
+                <a href="">
+                    <span class="icon">
+                        <ion-icon name="finger-print-outline"></ion-icon>
+                    </span>
+                    <span class="title">BookHeaven Admin</span>
+                </a>
+            </li>
+            <li>
+                <a href="admin_main.html">
+                    <span class="icon">
+                        <ion-icon name="home-outline"></ion-icon>
+                    </span>
+                    <span class="title">Tổng quan</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span class="icon">
+                        <ion-icon name="people-outline"></ion-icon>
+                    </span>
+                    <span class="title">Khách hàng</span>
+                </a>
+            </li>
+            <li>
+                <a href="addsp/admin_selecttoadd.html">
+                    <span class="icon">
+                        <ion-icon name="chatbubble-outline"></ion-icon>
+                    </span>
+                    <span class="title">Sản Phẩm</span>
+                </a>
+            </li>
+            <li>
+                <a href="orders-admin.html">
+                    <span class="icon">
+                        <ion-icon name="receipt-outline"></ion-icon>
+                    </span>
+                    <span class="title">Đơn Hàng</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span class="icon">
+                        <ion-icon name="settings-outline"></ion-icon>
+                    </span>
+                    <span class="title">Cài đặt</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" id="logout-link">
+                    <span class="icon">
+                        <ion-icon name="log-out-outline"></ion-icon>
+                    </span>
+                    <span class="title">Đăng xuất</span>
+                </a>
+            </li>   
+        </ul>
+    </div>
+    <!---------------------- MAIN ------------------->
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+
+            <div class="search">
+                <label>
+                    <input type="text" placeholder="Tìm kiếm tại đây">
+                    <ion-icon name="search-outline"></ion-icon>
+                </label>
+            </div>
+
+            <div class="user">
+                <img src="../img/user.png" alt="">
+            </div>
+        </div>
+    <!-------------------- CÁC THẺ -------------------->
+        <div class="detail">
+            <div class="recentOrders">
+                <div class="cardHeader">
+                    <h2>Danh sách khách hàng</h2>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>Email</td>
+                            <td>Họ và Tên</td>
+                            <td>Số điện thoại</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="/js/admin.js"></script>   
+<script type="module">
+    // Cấu hình Firebase của bạn
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBzjS1Zf-rh1txM7KtoiGm5LkdDaWzTh-U",
+        authDomain: "store-music-fae02.firebaseapp.com",
+        databaseURL: "https://store-music-fae02-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "store-music-fae02",
+        storageBucket: "store-music-fae02.appspot.com",
+        messagingSenderId: "35440000355",
+        appId: "1:35440000355:web:8a266ed1a96e7c2f812756",
+        measurementId: "G-4MEMTBYYMT"
+    };
+
+    // Khởi tạo Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+   // Hàm lấy dữ liệu từ Firestore
+async function getUserData() {
+    const tableBody = document.querySelector('tbody');
+
+    // Truy vấn tất cả các tài liệu trong collection 'user'
+    const usersRef = collection(db, "user");
+    const snapshot = await getDocs(usersRef);
+
+    tableBody.innerHTML = ''; // Xóa nội dung bảng hiện tại
+
+    snapshot.forEach((docSnapshot) => {
+        const user = docSnapshot.data(); // Lấy dữ liệu của người dùng
+        const userid = user.userid || docSnapshot.id; // Lấy userid từ trường hoặc ID tài liệu làm dự phòng
+    
+        // Tạo một dòng mới cho mỗi tài liệu
+        const row = document.createElement('tr');
+        const rowContent = `
+            <td>${userid}</td>                      <!-- User ID -->
+            <td>${user.email || ''}</td>            <!-- Email -->
+            <td>${user.fullName || ''}</td>         <!-- Họ và tên -->
+            <td>${user.phone || ''}</td>            <!-- Số điện thoại -->
+        `;
+        row.innerHTML = rowContent;
+        tableBody.appendChild(row);
+    });
+}    
+
+// Gọi hàm để lấy dữ liệu từ Firestore
+getUserData();
+
+</script>
+</body>
+</html>

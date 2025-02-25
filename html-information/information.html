@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mesach-bookhaven</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/user.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="../js/vietnam.js"></script>
+    <script src="../js/checklogin.js"></script>
+</head>
+<body>
+    <section class="top">
+        <div class="container">
+            <div class="row">
+                <div class="top-logo">
+                    <img src="/img/logo.png" alt="">
+                </div>
+                <div class="top-menu-items">
+                    <ul>
+                        <li><a href="/home.html">Home</a></li>
+                        <li>
+                            Nike
+                            <ul class="top-menu-item">
+                                <li><a href="/html-cartegory/nikenam.html">Nam</a></li>
+                                <li><a href="/html-cartegory/nikenu.html">Nữ</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            Adidas
+                            <ul class="top-menu-item">
+                                <li><a href="/html-cartegory/adidasnam.html">Nam</a></li>
+                                <li><a href="/html-cartegory/adidasnu.html">Nữ</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            Other-Brand
+                            <ul class="top-menu-item">
+                                <li><a href="/html-cartegory/daygiay.html">Dây giày</a></li>
+                                <li><a href="/html-cartegory/vesinhgiay.html">Crep Protect - Vệ sinh giày</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="top-menu-icons">
+                    <ul>
+                        <li>
+                            <div class="search-bar" style="display: none;">
+                                <input type="text" id="searchInput" placeholder="Nhập từ cần tìm">
+                                <button id="searchButton" class="fas fa-search"></button>
+                            </div>
+                        </li>
+                        <li><a href="/login-admin/login.html"><i class="fa-regular fa-user"></i></a></li>
+                        <li><a href="/html-cart/cart.html"><i id="cart-icon"class="fas fa-shopping-cart"></i></a><span id="cart-count">0</span></li>                    
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="delivery">
+        <div class="container">
+            <div class="delivery-content row">
+                <div class="delivery-content-left">
+                    <p>Vui lòng nhập thông tin cá nhân</p>
+                    <div class="delivery-content-left-input-top row">
+                        <div class="delivery-content-left-input-top-item">
+                            <label for="fullName">Họ tên <span style="color: red;">*</span></label>
+                            <input type="text" id="fullName" name="fullName">
+                        </div>
+                        <div class="delivery-content-left-input-top-item">
+                            <label for="phone">Điện thoại <span style="color: red;">*</span></label>
+                            <input type="text" id="phone" name="phone">
+                        </div>
+                        <div class="delivery-content-left-input-top-item">
+                            <label for="provinceDropdown">Tỉnh/tp <span style="color: red;">*</span></label>
+                            <select id="provinceDropdown" class="select">
+                                <option value="">--Chọn tỉnh thành--</option>
+                            </select>
+                        </div>
+                        <div class="delivery-content-left-input-top-item">
+                            <label for="districtDropdown">Quận/huyện <span style="color: red;">*</span></label>
+                            <select id="districtDropdown" class="select">
+                                <option value="">--Chọn quận/huyện--</option>
+                            </select>
+                        </div>
+                        <div class="delivery-content-left-input-top-item">
+                            <label for="wardInput">Phường/Xã/Thị trấn<span style="color: red;">*</span></label>
+                            <input type="text" id="wardInput" name="wardInput">
+                        </div>
+                        <div class="delivery-content-left-input-top-item">
+                            <label for="addressInput">Địa chỉ <span style="color: red;">*</span></label>
+                            <input type="text" id="addressInput" name="addressInput">
+                        </div>
+                        <div class="delivery-content-left-input-top-item">
+                            <label for="userId">ID Người dùng</label>
+                            <input type="text" id="userId" name="userId" disabled>
+                        </div>
+                        <div class="delivery-content-left-button row">
+                            <button onclick="updatePersonalInfo()" id="update-info-btn"><p style="font-weight: bold;">CẬP NHẬT THÔNG TIN CÁ NHÂN</p></button>
+                        </div>
+                    </div>                
+                </div>       
+            </div>
+        </div>
+    </section>
+
+    <!----------------------- FOOTER ----------------------->
+    <section class="footer">
+        <div class="footer-container">
+            <p>Truy cập Fanpage <a href="https://www.facebook.com/profile.php?id=61569810176348" target="_blank">Book Haven Store</a></p>
+            <div class="app-google">
+                <a href="https://www.apple.com/app-store/" target="_blank"><img src="/img/Screenshot 2024-05-15 003849.png" alt=""></a>
+                <a href="https://play.google.com/store/games?hl=vi&pli=1" target="_blank"><img src="/img/Screenshot 2024-05-15 003813.png" alt=""></a>
+            </div>
+            <div class="footer-items">
+                <li><a href="http://online.gov.vn" target="_blank"><img src="/img/Screenshot 2024-05-15 003506.png" alt="" ></a></li>
+                <li><a href="tel:0797268602">Liên hệ</a></li>
+                <li><a href="">Giới thiệu</a></li>
+                <li><a href="https://www.facebook.com/profile.php?id=61569810176348" target="_blank"><i class="fab fa-facebook-f"></i></a><a href="https://mail.google.com/mail/?view=cm&fs=1&to=bookhavenstoresince2024@gmail.com" target="_blank"><i class="fa-solid fa-envelope"></i></a></li>
+            </div>
+            <div class="footer-text">
+                <p></p>
+                Địa chỉ đăng ký: 254/5, đường Lê Văn Thọ, phường 11, quận Gò Vấp
+                Đặt hàng online: 0797268602
+            </div>
+            <div class="footer-bottom">
+                @ Book Haven Store by BOYS Studio
+            </div>
+        </div>
+    </section>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+        
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDn6CVJY97vguLGrwTaOk2TEYlsGvpCzsM",
+            authDomain: "storeshoes-online.firebaseapp.com",
+            databaseURL: "https://storeshoes-online-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "storeshoes-online",
+            storageBucket: "storeshoes-online.firebasestorage.app",
+            messagingSenderId: "151351290325",
+            appId: "1:151351290325:web:d33c235484d51fa8b3755c",
+            measurementId: "G-FXHBZPFM19"
+        };
+        
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        
+        // Hàm tải thông tin cá nhân từ Firestore
+        async function loadPersonalInfo(emailId) {
+            const userDocRef = doc(db, "user", emailId);
+            const docSnap = await getDoc(userDocRef);
+        
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                // Điền thông tin vào form
+                document.getElementById('fullName').value = data.fullName || "";
+                document.getElementById('phone').value = data.phone || "";
+                document.getElementById('provinceDropdown').value = data.province || "";
+                document.getElementById('districtDropdown').value = data.district || "";
+                document.getElementById('addressInput').value = data.address || "";
+                document.getElementById('wardInput').value = data.ward || "";
+                document.getElementById('userId').value = data.userid || "";
+            } else {
+                console.log("Không tìm thấy thông tin người dùng.");
+            }
+        }
+        
+        // Hàm cập nhật thông tin cá nhân
+        async function updatePersonalInfo() {
+            const fullName = document.getElementById('fullName').value;
+            const phone = document.getElementById('phone').value;
+            const province = document.getElementById('provinceDropdown').value;
+            const district = document.getElementById('districtDropdown').value;
+            const ward = document.getElementById('wardInput').value;
+            const address = document.getElementById('addressInput').value;
+        
+            if (!fullName || !phone || !province || !district || !address) {
+                alert("Vui lòng nhập đầy đủ thông tin!");
+                return;
+            }
+
+            // Kiểm tra số điện thoại có 10 số không
+            if (!/^\d{10}$/.test(phone)) {
+                alert("Số điện thoại phải có đúng 10 chữ số.");
+                return;
+            }
+        
+            // Lấy email của người dùng hiện tại , hello
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    const emailId = user.email.replace(/[.#$[\]]/g, "_"); // Chuyển email thành ID hợp lệ
+                    const userDocRef = doc(db, "user", emailId);
+        
+                    try {
+                        const docSnap = await getDoc(userDocRef);
+        
+                        if (docSnap.exists()) {
+                            // Tài liệu đã tồn tại, cập nhật thông tin
+                            await updateDoc(userDocRef, {
+                                fullName: fullName,
+                                phone: phone,
+                                province: province,
+                                district: district,
+                                ward:ward,
+                                address: address
+                            });
+                            alert("Thông tin cá nhân đã được cập nhật thành công!");
+                        } else {
+                            // Nếu tài liệu không tồn tại, tạo mới
+                            await setDoc(userDocRef, {
+                                fullName: fullName,
+                                phone: phone,
+                                province: province,
+                                district: district,
+                                ward:ward,
+                                address: address
+                            });
+                            alert("Thông tin cá nhân đã được lưu thành công!");
+                        }
+                    } catch (error) {
+                        console.error("Lỗi khi cập nhật thông tin:", error);
+                        alert("Có lỗi xảy ra khi cập nhật thông tin!");
+                    }
+                } else {
+                    alert("Bạn chưa đăng nhập!");
+                }
+            });
+        }
+        
+        // Gắn sự kiện click vào nút cập nhật
+        document.getElementById('update-info-btn').addEventListener('click', updatePersonalInfo);
+        
+        // Khi người dùng đăng nhập, hiển thị thông tin cá nhân
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                const emailId = user.email.replace(/[.#$[\]]/g, "_"); // Chuyển email thành ID hợp lệ
+                loadPersonalInfo(emailId); // Tải thông tin người dùng
+            } else {
+                console.log("Người dùng chưa đăng nhập.");
+            }
+        });        
+    </script>    
+</body>
+</html>

@@ -1,0 +1,148 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+.container-orders {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+h1 {
+    text-align: center;
+    color: #333;
+}
+.order {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f9f9f9;
+    text-align: left;
+}
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.order-header h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #007BFF;
+}
+.order-header .status {
+    font-weight: bold;
+}
+.product-list {
+    margin-top: 10px;
+    display: flex; /* Sử dụng flexbox để căn chỉnh sản phẩm */
+    flex-direction: column; /* Sắp xếp theo chiều dọc */
+}
+.product {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+    width:100%;
+}
+.product span {
+    flex: 1; /* Đảm bảo các phần tử con chiếm đều không gian */
+
+}
+.product:last-child {
+    border-bottom: none;
+}
+
+.total {
+    font-weight: bold;
+    margin-top: 10px;
+}
+.order-section {
+    padding: 20px; /* Thêm khoảng cách bên trong cho toàn bộ phần đơn hàng */
+    background-color: #f4f4f4; /* Màu nền nhẹ cho phần đơn hàng */
+    margin-top: 80px; / /* Màu nền nhẹ cho phần đơn hàng */
+}
+.footer{
+    margin-top: 300px;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 400px;  /* Độ rộng của modal */
+    min-height: 150px;  /* Đảm bảo modal đủ chiều cao */
+    transform: translate(-50%, -50%);
+    background: #f9f9f9;  /* Màu nền nhẹ */
+    padding: 20px;
+    border-radius: 8px;  /* Bo tròn các góc */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Đổ bóng nhẹ cho modal */
+    z-index: 9999;  /* Đảm bảo modal hiển thị trên cùng */
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    overflow: auto;
+    transition: transform 0.3s ease-out;  /* Hiệu ứng mượt mà khi mở modal */
+}
+
+.modal h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.cancel-order-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #007bff;  /* Màu nền đỏ cho nút Hủy */
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.cancel-order-btn:hover {
+    background-color: #004085;  /* Màu nền khi nhấn */
+}
+
+select, button[id^="confirm-cancel-btn-"],button[id^="cancel-cancel-btn-"] {
+    width: 100%;
+    padding: 12px;  /* Tăng padding để nút và select đẹp hơn */
+    margin-top: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;  /* Bo tròn góc các phần tử form */
+    background-color: #fff;
+    transition: border-color 0.3s ease-in-out;
+}
+
+select:hover, button[id^="confirm-cancel-btn-"],button[id^="cancel-cancel-btn-"]:hover {
+    border-color: #888;
+}
+
+button[id^="confirm-cancel-btn-"],button[id^="cancel-cancel-btn-"] {
+    cursor: pointer;
+    background-color: #007bff;  /* Màu nền cho nút */
+    color: white;
+    border: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+button[id^="confirm-cancel-btn-"],button[id^="cancel-cancel-btn-"]:hover {
+    background-color: #0056b3;  /* Màu nền khi hover */
+}
+
+button[id^="confirm-cancel-btn-"],button[id^="cancel-cancel-btn-"]:active {
+    background-color: #004085;  /* Màu nền khi nhấn */
+}

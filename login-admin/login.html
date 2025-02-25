@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mesach-bookhaven</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
+    <script src="../js/checklogin.js"></script>
+    <script type="module" src="../js/Login-User.js"></script>
+</head>
+<body>
+    <div class="container" id="container">
+        <!-- Form Đăng ký -->
+        <div class="form-container sign-up">
+            <form id="register-form">
+                <h1>Tạo Tài Khoản</h1>
+                <div class="social-icons">
+                    <a href="#" class="social-login" id="google-register">
+                        <i class="fa-brands fa-google"></i>
+                    </a>
+                </div>
+                <span>hoặc sử dụng thông tin cá nhân để đăng nhập</span>
+                <input type="email" id="register-email" placeholder="Email" required>
+                <input type="password" id="register-password" placeholder="Mật khẩu" required>
+                <input type="text" id="register-name" placeholder="Họ và Tên" required>
+                <input type="text" id="register-phone" placeholder="Số điện thoại" required>
+                <button type="submit" id="register">Đăng ký</button>
+            </form>
+        </div>
+        <!-- Form Đăng nhập -->
+        <div class="form-container sign-in">
+            <form id="login-form">
+                <h1>Đăng Nhập</h1>
+                <div class="social-icons">
+                    <a href="#" class="social-login" id="google-login">
+                        <i class="fa-brands fa-google"></i>
+                    </a>
+                </div>
+                <span>hoặc sử dụng mật khẩu email của bạn</span>
+                <input type="email" id="login-email" placeholder="Email">
+                <input type="password" id="login-password" placeholder="Mật khẩu">                
+                <a href="/login-admin/forgotpassword.html">Quên mật khẩu ?</a>
+                <button type="submit" id="login">Đăng nhập</button>
+                <a href="../home.html"><span>&#171;</span><p>Quay lại Trang chủ</p></a>
+            </form>
+        </div>
+
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Chào mừng trở lại !</h1>
+                    <p>Nhập thông tin cá nhân của bạn để sử dụng tất cả các tính năng của trang web</p>
+                    <button class="hidden" id="login-change">Đăng nhập</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Xin chào, bạn !</h1>
+                    <p>Đăng ký với thông tin cá nhân của bạn để sử dụng tất cả các tính năng của trang web</p>
+                    <button class="hidden" id="register-change">Đăng ký</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/function.js"></script>
+</body>
+</html>

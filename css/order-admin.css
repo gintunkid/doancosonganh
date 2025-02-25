@@ -1,0 +1,172 @@
+.emailSelector {
+    margin-bottom: 20px;
+}
+
+.emailSelector select {
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 250px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+    }
+    .container-orders {
+        max-width: 800px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    .order {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        padding: 15px;
+        background: #f9f9f9;
+    }
+    .order-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .order-header h2 {
+        margin: 0;
+        font-size: 18px;
+        color: #007BFF;
+    }
+    .order-header .status {
+        font-weight: bold;
+    }
+    .product-list {
+        margin-top: 10px;
+        display: flex; /* Sử dụng flexbox để căn chỉnh sản phẩm */
+        flex-direction: column; /* Sắp xếp theo chiều dọc */
+    }
+    .product {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 0;
+        border-bottom: 1px solid #ddd;
+        width:100%;
+    }
+    .product span {
+    flex: 1; /* Đảm bảo các phần tử con chiếm đều không gian */
+    
+    }
+    .product:last-child {
+        border-bottom: none;
+    }
+.total {
+        font-weight: bold;
+        margin-top: 10px;
+    }
+.order-section {
+padding: 20px; /* Thêm khoảng cách bên trong cho toàn bộ phần đơn hàng */
+background-color: #f4f4f4; /* Màu nền nhẹ cho phần đơn hàng */
+margin-top: 80px; / /* Màu nền nhẹ cho phần đơn hàng */
+}
+.footer{
+margin-top: 300px;
+}
+/* Container for the order status */
+.order-status {
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+/* Style for the status dropdown */
+.status-dropdown {
+    width: 100%;
+    max-width: 250px;
+    padding: 8px;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+/* Focus effect for the dropdown */
+.status-dropdown:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Style for selected options */
+.status-dropdown option {
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* Hover effect for options */
+.status-dropdown:hover {
+    cursor: pointer;
+    background-color: #f1f1f1;
+}
+
+/* Adding space between orders and dropdown */
+.order {
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+/* Header of each order */
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.order-header .status {
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Customer info section */
+.customer-info p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* Product list */
+.product-list .product {
+    margin-bottom: 10px;
+}
+
+.product-list span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Total cost styling */
+.total {
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* Responsiveness */
+@media (max-width: 600px) {
+    .status-dropdown {
+        width: 100%;
+    }
+}

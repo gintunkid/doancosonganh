@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mesach-bookhaven</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/home.html">
+    <script src="../js/chatbot.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+    <script src="/html-cartegory/product-detail.html"></script>
+    <script type="module" src="../js/Product.js"></script>
+    <script src="../js/checklogin.js"></script>
+    <!-- Your Scripts -->
+    <script type="module" src="../js/firebase-config.js"></script>
+    <script type="module">
+        import { addProducts, displayProducts } from '../js/Product.js';
+        
+        window.onload = async function() {
+            // await addProducts(); // Uncomment để thêm sản phẩm mới
+            await displayProducts('adidas', 'adidas_nam');
+        };
+    </script>
+    <script type="module">
+        import { displayProducts, viewProductDetail } from '../js/Product.js';
+        window.viewProductDetail = viewProductDetail; // Make it globally accessible
+        window.onload = displayProducts;
+    </script>
+    
+    <script type="module">
+        import { addProducts, displayProducts, viewProductDetail } from '../js/Product.js';
+    
+        // Gán hàm `viewProductDetail` để có thể gọi từ HTML onclick
+        window.viewProductDetail = viewProductDetail;
+    
+        document.addEventListener('DOMContentLoaded', async () => {
+            await displayProducts('adidas', 'adidas_nam');
+        });
+    </script>
+</head>
+<body>
+    <section class="top">
+        <div class="container">
+            <div class="row">
+                <div class="top-logo">
+                    <img src="/img/logo.png" alt="">
+                </div>
+                <div class="top-menu-items">
+                    <ul>
+                        <li><a href="/home.html">Home</a></li>
+                        <li>
+                            Nike
+                            <ul class="top-menu-item">
+                                <li><a href="/html-cartegory/nikenam.html">Nam</a></li>
+                                <li><a href="/html-cartegory/nikenu.html">Nữ</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            Adidas
+                            <ul class="top-menu-item">
+                                <li><a href="/html-cartegory/adidasnam.html">Nam</a></li>
+                                <li><a href="/html-cartegory/adidasnu.html">Nữ</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            Other-Brand
+                            <ul class="top-menu-item">
+                                <li><a href="/html-cartegory/daygiay.html">Dây giày</a></li>
+                                <li><a href="/html-cartegory/vesinhgiay.html">Crep Protect - Vệ sinh giày</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="top-menu-icons">
+                    <ul>
+                        <li>
+                            <div class="search-bar">
+                                <input type="text" id="searchInput" placeholder="Nhập từ cần tìm">
+                                <button id="searchButton" class="fas fa-search"></button>
+                            </div>
+                        </li>
+                        <li><a href="/login-admin/login.html"><i class="fa-regular fa-user"></i></a></li>
+                        <li><a href="/html-cart/cart.html"><i id="cart-icon"class="fas fa-shopping-cart"></i></a><span id="cart-count">0</span></li>                    
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+<!------------------ Cartegory ------------------->
+<section class="cartegory">
+    <div class="ads-left">
+        <a href="#"><img src="/img/Screenshot 2024-12-19 211638.png" alt="Ad Left"></a>
+    </div>
+    <div class="ads-right">
+        <a href="#"><img src="/img/Screenshot 2024-12-19 211638.png" alt="Ad Right"></a>
+    </div>
+    <div class="container">
+        <div class="cartegory-top row">
+            <p><a href="/home.html">Trang chủ</a></p> <span>&#10230; </span> <p>Adidas</p> <span>&#10230; </span> <p>Nam</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="cartegory-left">
+                <ul>
+                    <li class="cartegory-left-li"><a href="#">Nike</a>
+                        <ul>
+                            <li><a href="/html-cartegory/nikenam.html">Nam</a></li>
+                            <li><a href="/html-cartegory/nikenu.html">Nữ</a></li>
+                        </ul>
+                    </li>
+                    <li class="cartegory-left-li"><a href="#">Adidas</a>
+                        <ul>
+                            <li><a href="/html-cartegory/adidasnam.html">Nam</a></li>
+                            <li><a href="/html-cartegory/adidasnu.html">Nữ</a></li>
+                        </ul>
+                    </li>
+                    <li class="cartegory-left-li"><a href="#">Other_Brand</a>
+                        <ul>
+                            <li><a href="/html-cartegory/daygiay.html">Dây giày</a></li>
+                            <li><a href="/html-cartegory/vesinhgiay.html">Crep Protect - Vệ sinh giày</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="cartegory-right">
+                <div class="cartegory-right-top-item">
+                    <p>Adidas Nam</p>
+                </div>
+                <div class="cartegory-right-top-item">
+                    <select id="priceDropdown">
+                        <option value="">Phân loại giá</option>
+                        <option value="low">Dưới 2.000.000đ</option>
+                        <option value="medium">Từ 2.000.000đ - 3.000.000đ</option>
+                        <option value="high">Trên 3.000.000đ</option>
+                    </select>
+                </div> 
+                <div class="cartegory-right-content row">
+                    <div class="cartegory-right-content-item">
+                        <img src="" alt="">
+                        <h1>...</h1>
+                        <p>...<sup>đ</sup></p>
+                    </div>
+                    <div class="cartegory-right-content-item">
+                        <img src="" alt="">
+                        <h1>...</h1>
+                        <p>...<sup>đ</sup></p>
+                    </div>
+                    <div class="cartegory-right-content-item">
+                        <img src="" alt="">
+                        <h1>...</h1>
+                        <p>...<sup>đ</sup></p>
+                    </div>
+                    <div class="cartegory-right-content-item">
+                        <img src="" alt="">
+                        <h1>...</h1>
+                        <p>...<sup>đ</sup></p>
+                    </div>
+                    <div class="cartegory-right-content-item">
+                        <img src="" alt="">
+                        <h1>...</h1>
+                        <p>...<sup>đ</sup></p>
+                    </div>
+                    <div class="cartegory-right-content-item">
+                        <img src="" alt="">
+                        <h1>...</h1>
+                        <p>...<sup>đ</sup></p>
+                    </div>
+                    <div class="cartegory-right-content-item">
+                        <img src="" alt="">
+                        <h1>...</h1>
+                        <p>...<sup>đ</sup></p>
+                    </div>
+                    <div class="cartegory-right-content-item">
+                        <img src="" alt="">
+                        <h1>...</h1>
+                        <p>...<sup>đ</sup></p>
+                    </div>
+                    <div class="cartegory-right-content-item">
+                        <img src="" alt="">
+                        <h1>...</h1>
+                        <p>...<sup>đ</sup></p>
+                    </div>
+                    <div class="cartegory-right-content-item">
+                        <img src="" alt="">
+                        <h1>...</h1>
+                        <p>...<sup>đ</sup></p>
+                    </div>
+                    <div class="cartegory-right-content-item">
+                        <img src="" alt="">
+                        <h1>...</h1>
+                        <p>...<sup>đ</sup></p>
+                    </div>
+                    <div class="cartegory-right-content-item">
+                        <img src="" alt="">
+                        <h1>...</h1>
+                        <p>...<sup>đ</sup></p>
+                    </div>
+                    <div class="cartegory-right-content-item">
+                        <img src="" alt="">
+                        <h1>...</h1>
+                        <p>...<sup>đ</sup></p>
+                    </div>
+                    <div class="cartegory-right-content-item">
+                        <img src="" alt="">
+                        <h1>...</h1>
+                        <p>...<sup>đ</sup></p>
+                    </div>
+                    <div class="cartegory-right-content-item">
+                        <img src="" alt="">
+                        <h1>...</h1>
+                        <p>...<sup>đ</sup></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="chatToggle" class="chat-toggle" onclick="toggleChat()">
+        <i class="fa-solid fa-comment-medical"></i>
+        <span class="wave"></span>
+        <span class="wave"></span>
+        <span class="wave"></span>
+    </div>
+    <div id="chatbox" class="chatbox">
+        <div class="chatbox-header">
+            <h1>Tư vấn khách hàng</h1>
+            <button class="close-btn" onclick="toggleChat()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div id="messages" class="messages"></div>
+        <div id="questions" class="questions"></div>
+        <div class="input-area">
+            <input type="text" id="userInput" placeholder="Nhập câu hỏi của bạn....">
+            <button id="sendBtn" onclick="sendMessage()">Gửi</button>
+        </div>
+    </div>
+ </section>
+  
+<!-------------------- footer --------------------->
+<section class="footer">
+    <div class="footer-container">
+        <p>Truy cập Fanpage <a href="https://www.facebook.com/profile.php?id=61569810176348" target="_blank">Book Haven Store</a></p>
+        <div class="app-google">
+            <a href="https://www.apple.com/app-store/" target="_blank"><img src="/img/Screenshot 2024-05-15 003849.png" alt=""></a>
+            <a href="https://play.google.com/store/games?hl=vi&pli=1" target="_blank"><img src="/img/Screenshot 2024-05-15 003813.png" alt=""></a>
+        </div>
+        <div class="footer-items">
+            <li><a href="http://online.gov.vn" target="_blank"><img src="/img/Screenshot 2024-05-15 003506.png" alt="" ></a></li>
+            <li><a href="tel:0797268602">Liên hệ</a></li>
+            <li><a href="">Giới thiệu</a></li>
+            <li><a href="https://www.facebook.com/profile.php?id=61569810176348" target="_blank"><i class="fab fa-facebook-f"></i></a><a href="https://mail.google.com/mail/?view=cm&fs=1&to=bookhavenstoresince2024@gmail.com" target="_blank"><i class="fa-solid fa-envelope"></i></a></li>
+        </div>
+        <div class="footer-text">
+            <p></p>
+            Địa chỉ đăng ký: 254/5, đường Lê Văn Thọ, phường 11, quận Gò Vấp
+            Đặt hàng online: 0797268602
+        </div>
+        <div class="footer-bottom">
+            @ Book Haven Store by BOYS Studio
+        </div>
+    </div>
+</section>
+<script src="/js/function.js" >
+    //hello
+</script> 
+</body>
+</html>

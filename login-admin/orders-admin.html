@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin-Orders</title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/table.css">
+    <link rel="stylesheet" href="/css/order-admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <script type="module" src="../js admin/orders-admin.js"></script>
+    <script src="../js admin/checkadmin.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="navigation">
+        <ul>
+            <li>
+                <a href="admin_main.html">
+                    <span class="icon">
+                        <ion-icon name="finger-print-outline"></ion-icon>
+                    </span>
+                    <span class="title">BookHeaven Admin</span>
+                </a>
+            </li>
+            <li>
+                <a href="admin_main.html">
+                    <span class="icon">
+                        <ion-icon name="home-outline"></ion-icon>
+                    </span>
+                    <span class="title">Tổng quan</span>
+                </a>
+            </li>
+            <li>
+                <a href="user.html">
+                    <span class="icon">
+                        <ion-icon name="people-outline"></ion-icon>
+                    </span>
+                    <span class="title">Khách hàng</span>
+                </a>
+            </li>
+            <li>
+                <a href="addsp/admin_selecttoadd.html">
+                    <span class="icon">
+                        <ion-icon name="chatbubble-outline"></ion-icon>
+                    </span>
+                    <span class="title">Sản Phẩm</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span class="icon">
+                        <ion-icon name="receipt-outline"></ion-icon>
+                    </span>
+                    <span class="title">Đơn Hàng</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span class="icon">
+                        <ion-icon name="settings-outline"></ion-icon>
+                    </span>
+                    <span class="title">Cài đặt</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" id="logout-link">
+                    <span class="icon">
+                        <ion-icon name="log-out-outline"></ion-icon>
+                    </span>
+                    <span class="title">Đăng xuất</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!---------------------- MAIN ------------------->
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+            <div class="search">
+                <label>
+                    <input type="text" placeholder="Tìm kiếm tại đây">
+                    <ion-icon name="search-outline"></ion-icon>
+                </label>
+            </div>
+            <div class="user">
+                <img src="../img/user.png" alt="">
+            </div>
+        </div>
+        <!-------------------- Dropdown chọn email -------------------->
+        <div class="emailSelector">
+            <label for="emailOptions">Chọn email:</label>
+            <select id="emailOptions">
+                <option value="">-- Chọn email --</option>
+            </select>
+        </div>
+        <!-------------------------- Danh sách đơn hàng --------------------->
+    <section class="order-section">
+        <section class="container-orders">
+            <h1>Danh sách đơn hàng của người dùng</h1>
+            <div class="order">
+                <div class="order-header">
+                    <h2>ID Đơn hàng: 001</h2>
+                    <select class="status-dropdown">
+                        <option value="Đang chờ tiếp nhận" selected>Đang chờ tiếp nhận</option>
+                        <option value="Đang xử lý">Đang xử lý</option>
+                        <option value="Đang giao hàng">Đang giao hàng</option>
+                        <option value="Đã giao thành công">Đã giao thành công</option>
+                        <option value="Đã hủy">Đã hủy</option>
+                    </select>
+                </div>
+                <div class="product-list">
+                    <div class="product">
+                        <span>Tên sản phẩm 1</span>
+                        <span>Số lượng: 2</span>
+                        <span>Thành tiền: 0 đ</span>
+                    </div>
+                    <div class="product">
+                        <span>Tên sản phẩm 2</span>
+                        <span>Số lượng: 1</span>
+                        <span>Thành tiền: 0 đ</span>
+                    </div>
+                </div>
+                <div class="total">Tổng tiền: 0 đ</div>
+            </div>
+            <!-- Thêm các đơn hàng khác ở đây -->
+        </section>
+    </section>
+    </div>
+</div>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script type="module">
+</script>
+</body>
+</html>

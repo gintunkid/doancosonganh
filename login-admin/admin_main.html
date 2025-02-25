@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin-Dashboard</title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="../js admin/checkadmin.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="navigation">
+        <ul>
+            <li>
+                <a href="">
+                    <span class="icon">
+                        <ion-icon name="finger-print-outline"></ion-icon>
+                    </span>
+                    <span class="title">BookHeaven Admin</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span class="icon">
+                        <ion-icon name="home-outline"></ion-icon>
+                    </span>
+                    <span class="title">Tổng quan</span>
+                </a>
+            </li>
+            <li>
+                <a href="user.html">
+                    <span class="icon">
+                        <ion-icon name="people-outline"></ion-icon>
+                    </span>
+                    <span class="title">Khách hàng</span>
+                </a>
+            </li>
+            <li>
+                <a href="addsp/admin_selecttoadd.html">
+                    <span class="icon">
+                        <ion-icon name="chatbubble-outline"></ion-icon>
+                    </span>
+                    <span class="title">Sản Phẩm</span>
+                </a>
+            </li>
+            <li>
+                <a href="orders-admin.html">
+                    <span class="icon">
+                        <ion-icon name="receipt-outline"></ion-icon>
+                    </span>
+                    <span class="title">Đơn Hàng</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span class="icon">
+                        <ion-icon name="settings-outline"></ion-icon>
+                    </span>
+                    <span class="title">Cài đặt</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" id="logout-link">
+                    <span class="icon">
+                        <ion-icon name="log-out-outline"></ion-icon>
+                    </span>
+                    <span class="title">Đăng xuất</span>
+                </a>
+            </li>   
+        </ul>
+    </div>
+    <!---------------------- MAIN ------------------->
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+
+            <div class="search">
+                <label>
+                    <input type="text" placeholder="Tìm kiếm tại đây">
+                    <ion-icon name="search-outline"></ion-icon>
+                </label>
+            </div>
+
+            <div class="user">
+                <img src="../img/user.png" alt="">
+            </div>
+        </div>
+    <!-------------------- CÁC THẺ -------------------->
+        <div class="cardBox">
+            <a href="" style="text-decoration: none;">
+                <div class="card">
+                    <div>
+                        <div class="numbers">8,902</div>
+                        <div class="cardName">Thông Tin sản phẩm</div>
+                    </div>
+                    <div class="iconBx">
+                        <ion-icon name="desktop-outline"></ion-icon>
+                    </div>
+                </div>
+            </a>
+            <div class="card">
+                <div>
+                    <div class="numbers">80</div>
+                    <div class="cardName">Sản phẩm bán ra</div>
+                </div>
+                <div class="iconBx">
+                    <ion-icon name="cart-outline"></ion-icon>
+                </div>
+            </div>
+            <div class="card">
+                <div>
+                    <div class="numbers">284</div>
+                    <div class="cardName">Đánh giá</div>
+                </div>
+                <div class="iconBx">
+                    <ion-icon name="chatbubbles-outline"></ion-icon>
+                </div>
+            </div>
+            <div class="card">
+                <div>
+                    <div class="numbers">$10,000</div>
+                    <div class="cardName">Doanh thu</div>
+                </div>
+                <div class="iconBx">
+                    <ion-icon name="cash-outline"></ion-icon>
+                </div>
+            </div>
+        </div>
+    <!---------------------- DANH SÁCH CHI TIẾT ĐẶT HÀNG ---------------------->
+        <div class="details">
+            <div class="recentOrders">
+                <div class="cardHeader">
+                    <h2>Đơn đặt hàng gần đây</h2>
+                    <a href="#" class="btn">Xem tất cả</a>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Tên sản phẩm</td>
+                            <td>Giá</td>
+                            <td>Thanh toán</td>
+                            <td>Trang thái</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>...</td>
+                            <td>$1,000</td>
+                            <td>Đã thanh toán</td>
+                            <td><span class="status delivered">Hoàn thành</span></td>
+                        </tr>
+                        <tr>
+                            <td>...</td>
+                            <td>$1,000</td>
+                            <td>Chưa thanh toán</td>
+                            <td><span class="status pending">Đang xử lý</span></td>
+                        </tr>
+                        <tr>
+                            <td>...</td>
+                            <td>$1,000</td>
+                            <td>Đã thanh toán</td>
+                            <td><span class="status return">Hoàn trả</span></td>
+                        </tr>
+                        <tr>
+                            <td>...</td>
+                            <td>$1,000</td>
+                            <td>Đã thanh toán</td>
+                            <td><span class="status pending">Đang xử lý</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    <!------------------------ KHÁCH HÀNG MỚI ------------------------->
+            <div class="recentCustomers">
+                <div class="cardHeader">
+                    <h2>Khách hàng gần đây</h2>
+                </div>
+                <table>
+                    <tr>
+                        <td width="60px">
+                            <div class="imgBx">
+                                <img src="../img/user.png" alt="">
+                            </div>
+                        </td>
+                        <td>
+                            <h4>Nguyễn Tuấn Kiệt<br> <span>Vietnam</span></h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="60px">
+                            <div class="imgBx">
+                                <img src="../img/user.png" alt="">
+                            </div>
+                        </td>
+                        <td>
+                            <h4>Lê Tấn Đạt<br><span>Vietnam</span></h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="60px">
+                            <div class="imgBx">
+                                <img src="../img/user.png" alt="">
+                            </div>
+                        </td>
+                        <td>
+                            <h4>Đặng Nhật Hào<br> <span>Vietnam</span></h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="60px">
+                            <div class="imgBx">
+                                <img src="../img/user.png" alt="">
+                            </div>
+                        </td>
+                        <td>
+                            <h4>Trần Huy Hoàng<br> <span>Vietnam</span></h4>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="/js/admin.js"></script>   
+</body>
+</html>

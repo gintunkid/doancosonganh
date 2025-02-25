@@ -1,0 +1,76 @@
+.detail {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 30px;
+    margin-top: 10px;
+}
+/* Cải thiện kiểu dáng của bảng */
+table {
+    width: auto;
+    border-collapse: collapse; /* Gộp các đường viền bảng lại với nhau */
+    margin: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 50px;
+    table-layout: fixed; /* Cố định kích thước cột */
+}
+
+thead {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
+
+td, th {
+    padding: 12px 20px;
+    text-align: left; /* Căn chỉnh văn bản bên trái */
+    border: 1px solid #ddd;
+    word-wrap: break-word; /* Ngắt từ nếu nội dung dài quá */
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center; /* Căn giữa tiêu đề cột */
+}
+
+/* Điều chỉnh độ rộng các cột */
+td:nth-child(1), th:nth-child(1) {
+    width: 25%; /* Đặt chiều rộng cột email */
+}
+
+td:nth-child(2), th:nth-child(2) {
+    width: 20%; /* Đặt chiều rộng cột họ và tên */
+}
+
+td:nth-child(3), th:nth-child(3) {
+    width: 15%; /* Đặt chiều rộng cột số điện thoại */
+}
+
+td:nth-child(4), th:nth-child(4) {
+    width: 25%; /* Đặt chiều rộng cột địa chỉ */
+}
+
+td:nth-child(5), th:nth-child(5) {
+    width: 15%; /* Đặt chiều rộng cột quận */
+}
+
+td:nth-child(6), th:nth-child(6) {
+    width: 20%; /* Đặt chiều rộng cột tỉnh thành */
+}
+
+td, th {
+    text-align: center; /* Căn giữa nội dung trong các cột */
+}
+
