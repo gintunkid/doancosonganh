@@ -84,6 +84,8 @@ a {
     height: 100%;
     display: flex;
     padding: 1px;
+    margin-left: 40px;
+
 }
 
 .top-menu-items ul li:hover {

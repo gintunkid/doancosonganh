@@ -2,8 +2,6 @@
 import { db } from "./firebase-config.js"; 
 
 
-
-
 // Hàm upload ảnh và lấy URL
 async function uploadImageAndGetURL(imageFile, categories, subCategories, imageName) {
     const storage = firebase.storage();
@@ -226,7 +224,7 @@ async function filterProductsByPrice(categories, subCategories, priceRange) {
 async function updateProduct(categories, subCategories, productId, updateData) {
     try {
         const db = firebase.firestore();
-        await db.collection("product")
+        await db.collection("products")
                .doc(categories)
                .collection(subCategories)
                .doc(productId)
@@ -261,4 +259,4 @@ export {
     updateProduct, 
     deleteProduct 
 };
-export { addProducts, displayProducts, searchProductsByName,  viewProductDetail,displaySearchResults };
+export { addProducts, displayProducts, searchProductsByName, viewProductDetail, displaySearchResults };

@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 window.location.href = "/html-cart/cart.html";
             } else {
                 // Nếu chưa đăng nhập, chuyển đến trang đăng nhập
-                window.location.href = "../login-admin/login.html";
+                window.location.href = "/login-admin/login.html";
             }
         });
     }

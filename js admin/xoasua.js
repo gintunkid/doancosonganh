@@ -4,14 +4,14 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstati
 
 // Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyBzjS1Zf-rh1txM7KtoiGm5LkdDaWzTh-U",
-    authDomain: "store-music-fae02.firebaseapp.com",
-    projectId: "store-music-fae02",
-    storageBucket: "store-music-fae02.appspot.com",
-    messagingSenderId: "35440000355",
-    appId: "1:35440000355:web:8a266ed1a96e7c2f812756"
-};
-
+    apiKey: "AIzaSyAf5hxg2YNKxuIM7Kw3viYnyRMVHZaMh4g",
+    authDomain: "step-up-brand.firebaseapp.com",
+    projectId: "step-up-brand",
+    storageBucket: "step-up-brand.firebasestorage.app",
+    messagingSenderId: "915455304768",
+    appId: "1:915455304768:web:da213c10c670fd0384aba5",
+    measurementId: "G-X23NY4DSWG"
+  };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -24,14 +24,12 @@ const productId = urlParams.get('id'); // ID sản phẩm được truyền qua 
 // Hàm để tải thông tin sản phẩm
 async function loadProductDetail(productId) {
     const collectionPaths = {
-        comic: `product/sach/comic`,
-        foreignBook: `product/sach/sachngoaingu`,
-        stationery: `product/vpp/dungcuvanphong`,
-        psychology: `product/sach/tamlikinangsong`,
-        educationalToy: `product/dochoi/giaoduc`,
-        model: `product/dochoi/mohinh`,
-        butviet:  `product/vpp/butviet`,
-         giay: `product/vpp/sanphamgiay`
+        comic: `products/nike/nike_nam`,
+        foreignBook: `products/nike/nike_nu`,
+        stationery: `products/adidas/adidas_nam`,
+        psychology: `products/adidas/adidas_nu`,
+        educationalToy: `products/other_brand/daygiay`,
+        model: `products/other_brand/vs_giay`
     };
 
     let docRef;

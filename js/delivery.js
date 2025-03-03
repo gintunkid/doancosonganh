@@ -6,16 +6,15 @@ import { getFirestore, doc, getDoc, collection, addDoc } from "https://www.gstat
 
 // Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyDn6CVJY97vguLGrwTaOk2TEYlsGvpCzsM",
-    authDomain: "storeshoes-online.firebaseapp.com",
-    databaseURL: "https://storeshoes-online-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "storeshoes-online",
-    storageBucket: "storeshoes-online.firebasestorage.app",
-    messagingSenderId: "151351290325",
-    appId: "1:151351290325:web:d33c235484d51fa8b3755c",
-    measurementId: "G-FXHBZPFM19"
+    apiKey: "AIzaSyAf5hxg2YNKxuIM7Kw3viYnyRMVHZaMh4g",
+    authDomain: "step-up-brand.firebaseapp.com",
+    projectId: "step-up-brand",
+    storageBucket: "step-up-brand.firebasestorage.app",
+    messagingSenderId: "915455304768",
+    appId: "1:915455304768:web:da213c10c670fd0384aba5",
+    measurementId: "G-X23NY4DSWG"
   };
-
+  
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -169,88 +168,65 @@ function validatePhoneNumber(phone) {
 async function submitOrder(event) {
     event.preventDefault();
 
+    const user = auth.currentUser; // Kiểm tra người dùng
+    if (!user) {
+        alert("Bạn cần đăng nhập để đặt hàng!");
+        window.location.href = "../login.html"; // Chuyển hướng đến trang đăng nhập
+        return;
+    }
+
+    const useremail = user.email; // Lấy email của người dùng
     const fullName = document.getElementById("fullName").value.trim();
     const phone = document.getElementById("phone").value.trim();
-    const province = "Thành phố Hồ Chí Minh";
     const district = document.getElementById("districtDropdown").value.trim();
     const ward = document.getElementById("wardInput").value.trim();
     const address = document.getElementById("addressInput").value.trim();
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const user = firebase.auth().currentUser; // Lấy thông tin người dùng hiện tại
-    const useremail = user ? user.email : null; // Lấy email của người dùng
 
-    if (!fullName) {
-        alert("Vui lòng nhập họ và tên.");
-        return;
-    }
-
-    if (!phone) {
-        alert("Vui lòng nhập số điện thoại.");
+    if (!fullName || !phone || !district || !ward || !address) {
+        alert("Vui lòng nhập đầy đủ thông tin giao hàng.");
         return;
     }
 
     if (!validatePhoneNumber(phone)) {
-        alert("Số điện thoại phải có 10 số hoặc định dạng hợp lệ.");
+        alert("Số điện thoại không hợp lệ.");
         return;
     }
 
-    if (!district) {
-        alert("Vui lòng chọn quận/huyện.");
-        return;
-    }
-
-    if (!ward) {
-        alert("Vui lòng nhập phường/xã.");
-        return;
-    }
-
-    if (!address) {
-        alert("Vui lòng nhập địa chỉ chi tiết.");
-        return;
-    }
-    // Tính tổng tiền và tạo mảng items
+    // Tính tổng tiền
     let total = 0;
-    const items = []; // Mảng để lưu thông tin sản phẩm
+    const items = [];
 
     for (const item of cart) {
-        const product = await getProductById(item.id); // Gọi hàm lấy thông tin sản phẩm
+        const product = await getProductById(item.id);
         if (product) {
             const subtotal = product.price * item.quantity;
             total += subtotal;
-
-            // Thêm thông tin sản phẩm vào mảng items
-            items.push({
-                name: product.name, // Tên sản phẩm
-                quantity: item.quantity, // Số lượng
-                price: product.price, // Giá sản phẩm
-                subtotal: subtotal, // Thành tiền
-            });
+            items.push({ name: product.name, quantity: item.quantity, price: product.price, subtotal });
         }
     }
 
-    // Lấy phí ship
     const shippingFee = calculateShippingFee(district);
-    const grandTotal = total + shippingFee; // Tổng tiền bao gồm phí ship
+    const grandTotal = total + shippingFee;
 
-    // Tạo đối tượng đơn hàng
+    // Lưu đơn hàng vào Firestore
     const orderData = {
-        useremail, 
+        useremail,
         fullName,
         phone,
-        province:"Thành phố Hồ Chí Minh",
+        province: "Thành phố Hồ Chí Minh",
         district,
         ward,
         address,
-        items, // Lưu mảng items vào đơn hàng
-        total: grandTotal, // Lưu tổng tiền
-        shippingFee, // Lưu phí ship
-        createdAt: new Date(), // Thêm thời gian tạo đơn hàng
-        orderId: `ORDER-${Date.now()}`, // Tạo mã đơn hàng duy nhất
-        status: "Đang chờ tiếp nhận", // Trạng thái mặc định
+        items,
+        total: grandTotal,
+        shippingFee,
+        createdAt: new Date(),
+        orderId: `ORDER-${Date.now()}`,
+        status: "Đang chờ tiếp nhận",
         payment: "Thanh toán khi nhận hàng"
     };
 
-    // Gọi hàm lưu đơn hàng
     await saveOrder(orderData);
 }
 

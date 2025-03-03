@@ -1,5 +1,4 @@
 // cart.js
-
 import { db } from './firebase-config.js';
 
 function getCart() {
@@ -155,7 +154,17 @@ function proceedToCheckout() {
         alert('Giỏ hàng của bạn đang trống!');
         return;
     }
-    window.location.href = '/html-delivery/delivery.html';
+
+    // Kiểm tra trạng thái đăng nhập từ localStorage hoặc Firebase
+    const user = localStorage.getItem('user'); // Giả sử bạn lưu thông tin user trong localStorage
+    if (!user) {
+        alert('Bạn cần đăng nhập để thanh toán!');
+        window.location.href = "/login-admin/login.html"; // Điều hướng đến trang đăng nhập
+        return;
+    }
+
+    // Nếu đã đăng nhập, chuyển đến trang thanh toán
+    window.location.href = "/html-delivery/delivery.html";
 }
 
 // Khởi tạo khi trang được load

@@ -75,10 +75,17 @@ function updateCartCount() {
 
 // Xử lý mua hàng ngay
 function buyNow() {
-    addToCartSilently();
-    window.location.href = `/html-cart/cart.html`;
-}
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true"; // Kiểm tra đăng nhập
 
+    if (!isLoggedIn) {
+        alert("Bạn cần đăng nhập để mua hàng!");
+        window.location.href = "/login-admin/login.html"; // Chuyển hướng đến trang đăng nhập
+        return;
+    }
+
+    addToCartSilently(); // Thêm sản phẩm vào giỏ hàng
+    window.location.href = "/html-cart/cart.html"; // Chuyển hướng đến giỏ hàng
+}
 // Thêm vào giỏ hàng mà không hiển thị thông báo
 function addToCartSilently() {
     if (!currentProduct) {
