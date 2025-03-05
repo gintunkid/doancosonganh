@@ -260,3 +260,4 @@ export {
     deleteProduct 
 };
 export { addProducts, displayProducts, searchProductsByName, viewProductDetail, displaySearchResults };
+hello
