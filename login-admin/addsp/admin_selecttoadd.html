@@ -16,8 +16,7 @@
             border-radius: 8px;
             width: 100%;
             max-width: 400px;
-            margin: auto;
-            text-align: center;
+            margin: 10px;
         }
         
         .formContainer h2 {
@@ -68,8 +67,10 @@
 
         .formGroup {
             display: flex;
-            justify-content: space-between; /* Chia 2 bên */
-            width: 100%;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
         }
 
         .formGroup .formContainer {
@@ -83,74 +84,35 @@
             }
         }
         .productDisplay {
-            flex: 1; /* Chiếm không gian còn lại */
-            max-width: 0 auto ; /* Hoặc kích thước bạn muốn */
+            flex: 1; 
+            max-width: 0 auto ; 
             padding: 20px;
             background-color: #fff;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-        } 
+        }
+        #productsContainer .product img {
+            width: 100%; 
+            height: auto; 
+            max-width: 130px; 
+            border-radius: 8px; 
+        }   
+        .product h3 {
+            font-size: 14px; 
+            margin: 0; 
+        }
+        #productsContainer {
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 10px; 
+            padding-top: 10px;
+        }
 
-       .productDisplay, #productsContainer {
-        width: 48%;
-        padding: 20px;
-        box-sizing: border-box;
-        min-height: 300px; /* Đảm bảo có chiều cao để hiển thị */
-    }
-    #productForm {
-        background-color: #f9f9f9; /* Màu nền cho form */
-        border: 1px solid #ccc; /* Đường viền */
-        border-radius: 5px; /* Bo góc */
-        padding: 20px; /* Khoảng cách bên trong */
-        max-width: 500px; /* Chiều rộng tối đa */
-        margin: 20px auto; /* Căn giữa form */
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng */
-    }
-
-    #productForm h2 {
-        text-align: center; /* Căn giữa tiêu đề */
-        color: #333; /* Màu chữ tiêu đề */
-    }
-
-    #productForm label {
-        display: block; /* Hiển thị label dưới dạng khối */
-        margin-bottom: 5px; /* Khoảng cách dưới label */
-        font-weight: bold; /* Chữ đậm */
-    }
-
-    #productForm input,
-    #productForm textarea {
-        width: 100%; /* Chiều rộng 100% */
-        padding: 10px; /* Khoảng cách bên trong */
-        margin-bottom: 15px; /* Khoảng cách dưới input/textarea */
-        border: 1px solid #ccc; /* Đường viền */
-        border-radius: 4px; /* Bo góc */
-        box-sizing: border-box; /* Đảm bảo padding không làm tăng chiều rộng */
-    }
-
-    #productForm button {
-        background-color: #4CAF50; /* Màu nền cho nút cập nhật */
-    color: white; /* Màu chữ */
-    padding: 10px 15px; /* Khoảng cách bên trong */
-    border: none; /* Không có đường viền */
-    border-radius: 4px; /* Bo góc */
-    cursor: pointer; /* Con trỏ khi di chuột */
-    width: 100%; /* Chiều rộng 100% */
-    margin-bottom: 10px; /* Khoảng cách giữa các nút */
-}
-
-#productForm button#deleteButton {
-    background-color: #f44336; /* Màu nền cho nút xóa (đỏ) */
-}
-
-#productForm button:hover {
-    opacity: 0.9; /* Hiệu ứng khi hover */
-}
-
-#productForm button#deleteButton:hover {
-    opacity: 0.9; /* Hiệu ứng khi hover cho nút xóa */
-}
-    </style>
+        .product {
+            flex: 1 1 30%; 
+            box-sizing: border-box; 
+        }
+        </style>
 
 </head>
 
@@ -159,7 +121,7 @@
     <div class="navigation">
         <ul>
             <li>
-                <a href="">
+                <a href="#">
                     <span class="icon">
                         <ion-icon name="finger-print-outline"></ion-icon>
                     </span>
@@ -187,7 +149,7 @@
                     <span class="icon">
                         <ion-icon name="cube-outline"></ion-icon>
                     </span>
-                    <span class="title">Sản Phẩm</span>
+                    <span class="title">Thêm sản phẩm</span>
                 </a>
             </li>
             <li>
@@ -214,8 +176,6 @@
                     <span class="title">Đăng xuất</span>
                 </a>
             </li>
-
-            <!-- Add other navigation items here -->
         </ul>
     </div>
     
@@ -241,6 +201,8 @@
                 <img src="../../img/user.png" alt="">
             </div>
         </div>
+
+
         <!-- Forms for submitting data to different Firestore collections -->
         <div class="formGroup">
             <!-- Form 1: Products Collection -->
@@ -268,6 +230,21 @@
                     <button type="submit">Gửi</button>
                 </form>
             </div>
+            <div class="productDisplay">
+                <h2>Sản Phẩm</h2> 
+                <label for="categorySelect">Chọn thể loại sản phẩm:</label>
+                <select id="categorySelect">
+                    <option value="nike_nam">Nike Nam</option>
+                    <option value="nike_nu">Nike Nữ</option>
+                    <option value="adidas_nam">Adidas Nam</option>
+                    <option value="adidas_nu">Adidas Nữ</option>
+                    <option value="daygiay">Dây giày</option>
+                    <option value="vs_giay">Crep Protect - Vệ sinh giày</option>
+                </select>
+                <div id="productsContainer">
+                    
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -277,4 +254,3 @@
 <script src="/js/admin.js"></script>   
 </body>
 </html>
-

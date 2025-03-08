@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const productId = doc.id; // Lưu ID sản phẩm
     
                 const productElement = document.createElement('div'); // Định nghĩa productElement ở đây
-                productElement.classList.add('products');
+                productElement.classList.add('product');
                 productElement.innerHTML = `
                     <img src="${product.imageURL}" alt="${product.name}">
                     <h3>${product.name}</h3>
