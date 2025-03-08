@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin-Product</title>
+    <title>StepUp-Admin</title>
     <link rel="stylesheet" href="/css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -16,7 +16,8 @@
             border-radius: 8px;
             width: 100%;
             max-width: 400px;
-            margin: 10px;
+            margin: auto;
+            text-align: center;
         }
         
         .formContainer h2 {
@@ -67,10 +68,8 @@
 
         .formGroup {
             display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 20px;
+            justify-content: space-between; /* Chia 2 bên */
+            width: 100%;
         }
 
         .formGroup .formContainer {
@@ -90,28 +89,67 @@
             background-color: #fff;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-        }
-        #productsContainer .product img {
-    width: 100%; /* Chiều rộng 100% của phần tử chứa */
-    height: auto; /* Chiều cao tự động để giữ tỉ lệ */
-    max-width: 130px; /* Chiều rộng tối đa là 200px (hoặc giá trị bạn muốn) */
-    border-radius: 8px; /* Bo góc cho hình ảnh (tùy chọn) */
-    }   
-    .product h3 {
-    font-size: 14px; /* Thay đổi kích thước chữ theo ý muốn */
-    margin: 0; /* Bỏ margin nếu cần */
+        } 
+
+       .productDisplay, #productsContainer {
+        width: 48%;
+        padding: 20px;
+        box-sizing: border-box;
+        min-height: 300px; /* Đảm bảo có chiều cao để hiển thị */
     }
-    #productsContainer {
-    display: flex; /* Sử dụng Flexbox để xếp hàng */
-    flex-wrap: wrap; /* Cho phép các sản phẩm xuống dòng nếu không đủ chỗ */
-    gap: 10px; /* Khoảng cách giữa các sản phẩm */
-    padding-top: 10px;
+    #productForm {
+        background-color: #f9f9f9; /* Màu nền cho form */
+        border: 1px solid #ccc; /* Đường viền */
+        border-radius: 5px; /* Bo góc */
+        padding: 20px; /* Khoảng cách bên trong */
+        max-width: 500px; /* Chiều rộng tối đa */
+        margin: 20px auto; /* Căn giữa form */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng */
     }
 
-    .product {
-    flex: 1 1 30%; /* Chiếm 30% chiều rộng của container, có thể điều chỉnh */
-    box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước */
+    #productForm h2 {
+        text-align: center; /* Căn giữa tiêu đề */
+        color: #333; /* Màu chữ tiêu đề */
     }
+
+    #productForm label {
+        display: block; /* Hiển thị label dưới dạng khối */
+        margin-bottom: 5px; /* Khoảng cách dưới label */
+        font-weight: bold; /* Chữ đậm */
+    }
+
+    #productForm input,
+    #productForm textarea {
+        width: 100%; /* Chiều rộng 100% */
+        padding: 10px; /* Khoảng cách bên trong */
+        margin-bottom: 15px; /* Khoảng cách dưới input/textarea */
+        border: 1px solid #ccc; /* Đường viền */
+        border-radius: 4px; /* Bo góc */
+        box-sizing: border-box; /* Đảm bảo padding không làm tăng chiều rộng */
+    }
+
+    #productForm button {
+        background-color: #4CAF50; /* Màu nền cho nút cập nhật */
+    color: white; /* Màu chữ */
+    padding: 10px 15px; /* Khoảng cách bên trong */
+    border: none; /* Không có đường viền */
+    border-radius: 4px; /* Bo góc */
+    cursor: pointer; /* Con trỏ khi di chuột */
+    width: 100%; /* Chiều rộng 100% */
+    margin-bottom: 10px; /* Khoảng cách giữa các nút */
+}
+
+#productForm button#deleteButton {
+    background-color: #f44336; /* Màu nền cho nút xóa (đỏ) */
+}
+
+#productForm button:hover {
+    opacity: 0.9; /* Hiệu ứng khi hover */
+}
+
+#productForm button#deleteButton:hover {
+    opacity: 0.9; /* Hiệu ứng khi hover cho nút xóa */
+}
     </style>
 
 </head>
@@ -125,7 +163,7 @@
                     <span class="icon">
                         <ion-icon name="finger-print-outline"></ion-icon>
                     </span>
-                    <span class="title">BookHeaven Admin</span>
+                    <span class="title">StepUp Admin</span>
                 </a>
             </li>
              <li>
@@ -147,9 +185,17 @@
             <li>
                 <a href="admin_selecttoadd.html">
                     <span class="icon">
-                        <ion-icon name="chatbubble-outline"></ion-icon>
+                        <ion-icon name="cube-outline"></ion-icon>
                     </span>
                     <span class="title">Sản Phẩm</span>
+                </a>
+            </li>
+            <li>
+                <a href="xoasua.html">
+                    <span class="icon">
+                        <ion-icon name="trash-outline"></ion-icon>
+                    </span>
+                    <span class="title">Xóa sản phẩm</span>
                 </a>
             </li>
             <li>
@@ -158,14 +204,6 @@
                         <ion-icon name="receipt-outline"></ion-icon>
                     </span>
                     <span class="title">Đơn Hàng</span>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <span class="icon">
-                        <ion-icon name="settings-outline"></ion-icon>
-                    </span>
-                    <span class="title">Cài đặt</span>
                 </a>
             </li>
             <li>
@@ -203,8 +241,6 @@
                 <img src="../../img/user.png" alt="">
             </div>
         </div>
-
-
         <!-- Forms for submitting data to different Firestore collections -->
         <div class="formGroup">
             <!-- Form 1: Products Collection -->
@@ -221,35 +257,16 @@
                     
                     <label for="productType">Chọn loại sản phẩm:</label>
                     <select id="productType" required>
-                        <option value="comic">Truyện Comic</option>
-                        <option value="snn">Sách Ngoại Ngữ</option>
-                        <option value="tlkn">Sách Kỹ Năng Sống</option>
-                        <option value="giaoduc">Đồ chơi giáo dục</option>
-                        <option value="mohinh">Đồ chơi mô hình</option>
-                        <option value="vpp">Dụng cụ văn phòng</option>
-                        <option value="butviet">Bút viết</option>
-                        <option value="giay">Sản phẩm về giấy</option>
+                        <option value="nike_nam">Nike Nam</option>
+                        <option value="nike_nu">Nike Nữ</option>
+                        <option value="adidas_nam">Adidas Nam</option>
+                        <option value="adidas_nu">Adidas Nữ</option>
+                        <option value="daygiay">Dây giày</option>
+                        <option value="vs_giay">Crep Protect - Vệ sinh giày</option>
                     </select>
                     
                     <button type="submit">Gửi</button>
                 </form>
-            </div>
-            <div class="productDisplay">
-                <h2>Sản Phẩm</h2> 
-                <label for="categorySelect">Chọn thể loại sản phẩm:</label>
-                <select id="categorySelect">
-                    <option value="comic">Truyện Comic</option>
-                    <option value="snn">Sách Ngoại Ngữ</option>
-                    <option value="tlkn">Sách Kỹ Năng Sống</option>
-                    <option value="giaoduc">Đồ chơi giáo dục</option>
-                    <option value="mohinh">Đồ chơi mô hình</option>
-                    <option value="vpp">Dụng cụ văn phòng</option>
-                    <option value="butviet">Bút viết</option>
-                    <option value="giay">Sản phẩm về giấy</option>
-                </select>
-                <div id="productsContainer">
-                    
-                </div>
             </div>
         </div>
     </div>

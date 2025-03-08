@@ -22,46 +22,32 @@ const storage = getStorage(app);
 // Hàm để thêm sản phẩm
 async function addProduct(documentId, name, description, imageFile, price, rate, sold, productType) {
     let collectionPath = '';
-    let imagePath = ''; // Biến để lưu đường dẫn hình ảnh
-    // Chuyển đổi giá thành kiểu số
-    price = parseFloat(price); // Chuyển đổi giá sang kiểu số
 
-    // Kiểm tra xem giá có hợp lệ không
+    // Chuyển đổi giá thành kiểu số
+    price = parseFloat(price); 
+
     if (isNaN(price)) {
         alert("Giá không hợp lệ. Vui lòng nhập giá bằng số.");
-        return; // Dừng hàm nếu giá không hợp lệ
+        return;
     }
 
- // Xác định đường dẫn Firestore và đường dẫn hình ảnh dựa trên loại sản phẩm
+    // Xác định đường dẫn Firestore dựa trên loại sản phẩm   
     if (productType === 'nike_nam') {
         collectionPath = "products/nike/nike_nam";
-        imagePath = 'image/sach/comic/'; // Đường dẫn hình ảnh cho sản phẩm comic
-    } else if (productType === 'snn') {
-        collectionPath = "product/sach/sachngoaingu";
-        imagePath = 'image/sach/snn/'; // Đường dẫn hình ảnh cho sách ngoại ngữ
-    } else if (productType === 'tlkn') {
-        collectionPath = "product/sach/tamlikinangsong";
-        imagePath = 'image/sach/tlkn/'; // Đường dẫn hình ảnh cho sách kỹ năng sống
-    } else if (productType === 'giaoduc') {
-        collectionPath = "product/dochoi/giaoduc";
-        imagePath = 'image/dochoi/giaoduc/'; // Đường dẫn hình ảnh cho đồ chơi giáo dục
-    } else if (productType === 'mohinh') {
-        collectionPath = "product/dochoi/mohinh";
-        imagePath = 'image/dochoi/mohinh/'; 
-    }    else if (productType === 'vpp') {
-        collectionPath = "product/vpp/dungcuvanphongpham";
-        imagePath = 'image/dochoi/dungcuvanphongpham/'; 
-    }   else if (productType ==='butviet'){
-        collectionPath = "product/vpp/butviet";
-        imagePath = 'image/vpp/butviet/';
-    }else if (productType ==='giay'){
-        collectionPath = "product/vpp/sanphamgiay";
-        imagePath = 'image/vpp/sanphamgiay/';
+    } else if (productType === 'nike_nu') {
+        collectionPath = "products/nike/nike_nu";
+    } else if (productType === 'adidas_nam') {
+        collectionPath = "products/adidas/adidas_nam";
+    } else if (productType === 'adidas_nu') {
+        collectionPath = "products/adidas/adidas_nu";
+    } else if (productType === 'daygiay') {
+        collectionPath = "products/other_brand/daygiay";
+    } else if (productType === 'vs_giay') {
+        collectionPath = "products/other_brand/vs_giay";
     }
+
     if (imageFile) {
-        const storageRef = ref(storage, imagePath + imageFile.name);
-        await uploadBytes(storageRef, imageFile);
-        const imageURL = await getDownloadURL(storageRef);
+        const imageURL = URL.createObjectURL(imageFile); // Lấy đường dẫn ảnh từ máy tính
 
         // Lưu dữ liệu vào Firestore
         await setDoc(doc(db, collectionPath, documentId), {
@@ -75,11 +61,12 @@ async function addProduct(documentId, name, description, imageFile, price, rate,
         });
 
         alert('Sản phẩm đã được thêm thành công!');
-        displayProducts(); // Cập nhật danh sách sản phẩm sau khi thêm
+        displayProducts();
     } else {
         alert('Vui lòng chọn một hình ảnh.');
     }
 }
+
 
 
 // Hàm xử lý sự kiện khi form được gửi
@@ -119,22 +106,18 @@ document.addEventListener("DOMContentLoaded", function() {
         let collectionPath = '';
     
         // Xác định đường dẫn collection dựa trên thể loại
-        if (category === 'comic') {
-            collectionPath = 'product/sach/comic';
-        } else if (category === 'snn') {
-            collectionPath = 'product/sach/sachngoaingu';
-        } else if (category === 'tlkn') {
-            collectionPath = 'product/sach/tamlikinangsong';
-        } else if (category === 'giaoduc') {
-            collectionPath = 'product/dochoi/giaoduc';
-        } else if (category === 'mohinh') {
-            collectionPath = 'product/dochoi/mohinh';
-        } else if (category === 'vpp') {
-            collectionPath = 'product/vpp/dungcuvanphong';
-        } else if (category === 'butviet') {
-            collectionPath = 'product/vpp/butviet';
-        } else if(category === 'giay'){
-            collectionPath = 'product/vpp/sanphamgiay';
+        if (category === 'nike_nam') {
+            collectionPath = 'products/nike/nike_nam';
+        } else if (category === 'nike_nu') {
+            collectionPath = 'products/nike/nike_nu';
+        } else if (category === 'adidas_nam') {
+            collectionPath = 'products/adidas/adidas_nam';
+        } else if (category === 'adidas_nu') {
+            collectionPath = 'products/adidas/adidas_nu';
+        } else if (category === 'daygiay') {
+            collectionPath = 'products/other_brand/daygiay';
+        } else if (category === 'vs_giay') {
+            collectionPath = 'products/other_brand/vs_giay';
         }
     
         try {
@@ -147,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const productId = doc.id; // Lưu ID sản phẩm
     
                 const productElement = document.createElement('div'); // Định nghĩa productElement ở đây
-                productElement.classList.add('product');
+                productElement.classList.add('products');
                 productElement.innerHTML = `
                     <img src="${product.imageURL}" alt="${product.name}">
                     <h3>${product.name}</h3>

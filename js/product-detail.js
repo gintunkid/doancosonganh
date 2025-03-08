@@ -82,7 +82,6 @@ function buyNow() {
         window.location.href = "/login-admin/login.html"; // Chuyển hướng đến trang đăng nhập
         return;
     }
-
     addToCartSilently(); // Thêm sản phẩm vào giỏ hàng
     window.location.href = "/html-cart/cart.html"; // Chuyển hướng đến giỏ hàng
 }

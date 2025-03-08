@@ -23,7 +23,7 @@ function toggleChat() {
         chatbox.style.display = "block";
         if (messageArea.innerHTML === "") {
             // Gửi câu hỏi ban đầu khi mở chat
-            sendBotMessage('Book Haven là một trang web bán sách trực tuyến, chuyên cung cấp các cuốn sách đa dạng từ nhiều thể loại khác nhau, bao gồm các sách tự xuất bản của tác giả. Với sứ mệnh hỗ trợ các tác giả tự xuất bản, Book Haven không chỉ cung cấp nền tảng xuất bản dễ dàng mà còn giúp các tác giả xây dựng thương hiệu và tăng cường sự hiện diện trực tuyến.');
+            sendBotMessage('Step Up là một trang web bán giày thời trang trực tuyến, chuyên cung cấp các mẫu giày đa dạng từ nhiều thương hiệu và phong cách khác nhau, bao gồm cả các thiết kế độc quyền. Với sứ mệnh kết nối những người yêu giày với các xu hướng thời trang mới nhất, Step Up không chỉ là nơi mua sắm tiện lợi mà còn là nền tảng hỗ trợ các nhà thiết kế và thương hiệu giày độc lập xây dựng thương hiệu, mở rộng thị trường và khẳng định phong cách riêng');
             displayQuestions();  // Hiển thị câu hỏi sau khi mở chat
         }
         scrollToBottom(); // Cuộn xuống dưới khi mở chat
@@ -47,75 +47,38 @@ function displayQuestions() {
     const messageArea = document.getElementById("messages");
 
     const questions = [
-        { text: "Sách đang bán chạy nhất ở đây là gì?", answer: "Sách bán chạy nhất hiện nay là 'Cô gái đến từ hôm qua' của tác giả Nguyễn Nhật Ánh." },
-        { text: "Chính sách bảo hành ở đây là gì?", answer: " Mỗi sản phẩm đều có chính sách bảo hành riêng, nhưng có thể đổi trả trong vòng 7 ngày nếu sách bị lỗi." },
-        { text: "Shop có bán sách chính hãng không?", answer: "Tất cả sách bán tại Book Haven đều là sách chính hãng." }
+        { text: "Giày đang bán chạy nhất ở đây là gì?", answer: "Giày bán chạy nhất hiện nay là ADIDAS JOG 2.0 GREY của Adidas với gần 1000 sản phẩm đã bán ra." },
+        { text: "Chính sách bảo hành ở đây là gì?", answer: "Mỗi sản phẩm đều có chính sách bảo hành chung đều là 2 tháng kể từ lúc khách hàng mua sản phẩm và có thể đổi trả trong vòng 7 ngày nếu khách hàng không hài lòng." },
+        { text: "Shop có bán giày chính hãng không?", answer: "Tất cả giày bán tại Step Up đều là giày chính hãng." }
     ];
 
-
-    if (messageArea) {
-        const questions = [
-            { text: "Sách đang bán chạy nhất ở đây là gì?", answer: "Sách bán chạy nhất hiện nay là 'Cô gái đến từ hôm qua' của tác giả Nguyễn Nhật Ánh." },
-            { text: "Chính sách bảo hành ở đây là gì?", answer: "Sách không có chính sách bảo hành, nhưng có thể đổi trả trong vòng 7 ngày nếu sách bị lỗi." },
-            { text: "Shop có bán sách chính hãng không?", answer: "Tất cả sách bán tại Book Haven đều là sách chính hãng." }
-        ];
-
-
-        questions.forEach((question) => {
+    questions.forEach(question => {
+        // Kiểm tra nếu button đã tồn tại thì không tạo lại
+        if (!document.querySelector(`#messages button[data-question="${question.text}"]`)) {
             const button = document.createElement("button");
             button.innerText = question.text;
+            button.setAttribute("data-question", question.text); // Đặt thuộc tính để kiểm tra trùng lặp
             button.onclick = function () {
-                sendAnswer(question.answer, button);
+                sendAnswer(question.answer);
             };
-            messageArea.appendChild(button); // Thêm câu hỏi vào messageArea
-        });
-    }
-
-    questions.forEach(question => {
-        const button = document.createElement("button");
-        button.innerText = question.text;
-        button.onclick = function() {
-            sendAnswer(question.answer, button);
-        };
-        messageArea.appendChild(button);  // Thêm câu hỏi vào messageArea
+            messageArea.appendChild(button);
+        }
     });
-
 }
 
-function sendAnswer(answer, questionButton) {
+function sendAnswer(answer) {
     const messageArea = document.getElementById("messages");
 
     // Tạo tin nhắn bot
     const botMessage = document.createElement("div");
     botMessage.classList.add("bot-message");
-
-    // Kiểm tra nếu câu trả lời chứa một URL
-    const linkRegex = /https?:\/\/[^\s]+/g;
-    const containsLink = answer.match(linkRegex);
-
-    if (containsLink) {
-        // Nếu câu trả lời có chứa đường link, thay thế URL bằng thẻ <a>
-        answer = answer.replace(linkRegex, function(url) {
-            return `<a href="${url}" target="_blank">${url}</a>`;
-        });
-
-        botMessage.innerHTML = answer;  // Dùng innerHTML để có thể hiển thị đường link
-    } else {
-        botMessage.innerText = answer;  // Nếu không có URL, dùng innerText để tránh thẻ HTML
-    }
+    botMessage.innerText = answer;
 
     messageArea.appendChild(botMessage);
 
     // Cuộn xuống cuối cùng để thấy tin nhắn mới
     messageArea.scrollTop = messageArea.scrollHeight;
-
-    // Xóa câu hỏi đã được nhấn
-    if (questionButton) {
-        questionButton.remove();
-    }
-
-    scrollToBottom(); // Cuộn xuống cuối sau khi gửi câu trả lời
-};
+}
 
 // Hàm kiểm tra và gửi câu trả lời từ người dùng
 function sendMessage() {
@@ -163,13 +126,12 @@ function autoReply(userInput) {
 
     // Từ điển các từ khóa và câu trả lời
     const keywordResponses = [        
-        { keywords: ["chào shop", "hi", "hello", "dạ chào shop"], response: "Chào bạn, tôi là bot của shop bán sách Book Haven, mọi câu trả lời của tôi được lập trình sẵn. Nếu cần tư vấn riêng hãy liên hệ trang facebook cá nhân của shop." },
-        { keywords: ["địa chỉ cửa hàng", "cửa hàng ở đâu"], response: "Hiện tại cửa hàng đang ở 12 Trần Quốc Toản, phường 8, quận 3." },
-        { keywords: ["sách bán chạy", "sách hot", "best seller"], response: "Sách bán chạy nhất hiện nay là 'Cô gái đến từ hôm qua' của tác giả Nguyễn Nhật Ánh." },
-        { keywords: ["bảo hành", "đổi trả"], response: "Sách không có chính sách bảo hành, nhưng có thể đổi trả trong vòng 7 ngày nếu sách bị lỗi." },
-        { keywords: ["sách chính hãng", "hợp lệ", "uy tín"], response: "Tất cả sách bán tại Book Haven đều là sách chính hãng." },
-        { keywords: ["giao hàng"], response: "Thời gian ship hàng là 2-3 ngày kể từ khi nhận được đơn hàng." },
-        { keywords: ["mượn sách", "thuê sách", "rent", "mướn sách"], response: "Shop chỉ bán sách chứ không cho thuê. Mong bạn thông cảm. (Bot Reply)" }
+        { keywords: ["chào shop", "hi", "hello", "dạ chào shop"], response: "Chào bạn, tôi là bot của shop bán giày thời trang Step Up, mọi câu trả lời của tôi được lập trình sẵn. Nếu cần tư vấn riêng hãy liên hệ trang facebook cá nhân của shop." },
+        { keywords: ["địa chỉ cửa hàng", "cửa hàng ở đâu"], response: "Hiện tại cửa hàng đang ở 254 đ.Lê văn Thọ q.Gò Vấp" },
+        { keywords: ["giày bán chạy", "giày hot", "best seller"], response: "Giày bán chạy nhất hiện nay là ADIDAS JOG 2.0 GREY của Adidas với gần 1000 sản phẩm đã bán ra." },
+        { keywords: ["bảo hành", "đổi trả"], response: "Giày sẽ có chính sách bảo hành 2 tháng kể từ lúc khách hàng mua sản phẩm và có thể đổi trả trong vòng 7 ngày nếu khách hàng không hài lòng." },
+        { keywords: ["giày chính hãng", "hợp lệ", "uy tín"], response: "Tất cả giày bán tại Step Up đều là giày chính hãng." },
+        { keywords: ["giao hàng", "khi nào nhận được hàng"], response: "Thời gian ship hàng là 2-3 ngày kể từ khi nhận được đơn hàng." }
     ];
 
     // Tìm câu trả lời phù hợp

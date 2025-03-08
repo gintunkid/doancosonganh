@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BookHeaven-Admin</title>
+    <title>StepUp-Admin</title>
     <link rel="stylesheet" href="/css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script type="module" src="/js admin/xoasua.js"></script>   
@@ -69,15 +69,15 @@
     <div class="navigation">
         <ul>
             <li>
-                <a href="/login-admin/admin_main.html">
+                <a href="">
                     <span class="icon">
                         <ion-icon name="finger-print-outline"></ion-icon>
                     </span>
-                    <span class="title">BookHeaven Admin</span>
+                    <span class="title">StepUp  Admin</span>
                 </a>
             </li>
             <li>
-                <a href="/login-admin/admin_main.html">
+                <a href="../admin_main.html">
                     <span class="icon">
                         <ion-icon name="home-outline"></ion-icon>
                     </span>
@@ -85,7 +85,7 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="../user.html">
                     <span class="icon">
                         <ion-icon name="people-outline"></ion-icon>
                     </span>
@@ -93,15 +93,23 @@
                 </a>
             </li>
             <li>
-                <a href="addsp/admin_selecttoadd.html">
+                <a href="admin_selecttoadd.html">
                     <span class="icon">
-                        <ion-icon name="chatbubble-outline"></ion-icon>
+                        <ion-icon name="cube-outline"></ion-icon>
                     </span>
-                    <span class="title">Sản Phẩm</span>
+                    <span class="title">Thêm sản phẩm</span>
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="xoasua.html">
+                    <span class="icon">
+                        <ion-icon name="trash-outline"></ion-icon>
+                    </span>
+                    <span class="title">Xóa sản phẩm</span>
+                </a>
+            </li>
+            <li>
+                <a href="../orders-admin.html">
                     <span class="icon">
                         <ion-icon name="receipt-outline"></ion-icon>
                     </span>
@@ -109,23 +117,7 @@
                 </a>
             </li>
             <li>
-                <a href="">
-                    <span class="icon">
-                        <ion-icon name="settings-outline"></ion-icon>
-                    </span>
-                    <span class="title">Cài đặt</span>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <span class="icon">
-                        <ion-icon name="lock-closed-outline"></ion-icon>
-                    </span>
-                    <span class="title">Mật khẩu</span>
-                </a>
-            </li>
-            <li>
-                <a href="">
+                <a href="javascript:void(0);" id="logout-link">
                     <span class="icon">
                         <ion-icon name="log-out-outline"></ion-icon>
                     </span>
@@ -137,6 +129,10 @@
     <!---------------------- MAIN ------------------->
     <div class="main">
         <div class="topbar">
+            <div class="toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+
             <div class="search">
                 <label>
                     <input type="text" placeholder="Tìm kiếm tại đây">
@@ -145,7 +141,7 @@
             </div>
 
             <div class="user">
-                <img src="../img/user.png" alt="">
+                <img src="../../img/user.png" alt="">
             </div>
         </div>
         <form id="productForm">
@@ -164,14 +160,12 @@
             
             <label for="productType">Chọn loại sản phẩm:</label>
             <select id="productType" required>
-                <option value="comic">Truyện Comic</option>
-                <option value="foreignBook">Sách Ngoại Ngữ</option>
-                <option value="psychology">Sách Kỹ Năng Sống</option>
-                <option value="stationery">Dụng cụ văn phòng</option>
-                <option value="educationalToy">Đồ chơi giáo dục</option>
-                <option value="model">Mô hình</option>
-                <option value="butviet">Bút viết</option>
-                <option value="giay">Sản phẩm về giấy</option>
+                <option value="nike_nam">Nike Nam</option>
+                <option value="nike_nu">Nike Nữ</option>
+                <option value="adidas_nam">Adidas Nam</option>
+                <option value="adidas_nu">Adidas Nữ</option>
+                <option value="daygiay">Dây giày</option>
+                <option value="vs_giay">Crep Protect - Vệ sinh giày</option>
             </select>
             
             <button type="submit" id="updateButton">Cập nhật sản phẩm</button>
@@ -179,5 +173,9 @@
         </form>
     </div>   
 </div>
+<script type="module" src="/js admin/admin.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="/js/admin.js"></script>   
 </body>
 </html>

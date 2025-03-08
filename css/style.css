@@ -179,6 +179,7 @@ a {
     height: auto!important;
     padding: 6px;
     border: 1px solid #dddddd;
+    text-align: right;
 }
 
 .top-menu-item li:hover a {

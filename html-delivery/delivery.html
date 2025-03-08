@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mesach-bookhaven</title>
+    <title>Giao hàng</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/home.html">
@@ -82,7 +82,7 @@
         <div class="delivery-content row">
             <div class="delivery-content-left">
                 <p>Vui lòng chọn địa chỉ giao hàng <span style="color: red;">*</span></p>
-                <p>Qua Fanpage <a href="https://www.facebook.com/profile.php?id=61569810176348" target="_blank">Book Haven Store</a> của shop để đặt hàng</p>
+                <p>Qua Fanpage <a href="https://www.facebook.com/profile.php?id=61569810176348" target="_blank">Step Up Store</a> của shop để đặt hàng</p>
                 <div class="delivery-content-left-input-top row">
                     <div class="delivery-content-left-input-top-item">
                         <label for="fullName">Họ tên <span style="color: red;">*</span></label>
@@ -360,7 +360,7 @@ async function displayCart() {
 
         for (const item of cart) {
             try {
-                const docRef = db.collection("product").doc("sach").collection("comic").doc(item.id);
+                const docRef = db.collection("products").doc("nike").collection("nike_nu").doc(item.id);
                 const doc = await docRef.get();
                 
                 if (doc.exists) {

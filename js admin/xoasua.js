@@ -24,12 +24,12 @@ const productId = urlParams.get('id'); // ID sản phẩm được truyền qua 
 // Hàm để tải thông tin sản phẩm
 async function loadProductDetail(productId) {
     const collectionPaths = {
-        comic: `products/nike/nike_nam`,
-        foreignBook: `products/nike/nike_nu`,
-        stationery: `products/adidas/adidas_nam`,
-        psychology: `products/adidas/adidas_nu`,
-        educationalToy: `products/other_brand/daygiay`,
-        model: `products/other_brand/vs_giay`
+        nike_nam: `products/nike/nike_nam`,
+        nike_nu: `products/nike/nike_nu`,
+        adidas_nam: `products/adidas/adidas_nam`,
+        adidas_nu: `products/adidas/adidas_nu`,
+        daygiay: `products/other_brand/daygiay`,
+        vs_giay: `products/other_brand/vs_giay`
     };
 
     let docRef;
@@ -63,14 +63,12 @@ function setProductDetails(product, id) {
 // Hàm để xóa sản phẩm
 async function deleteProduct() {
     const collectionPaths = {
-        comic: `product/sach/comic`,
-        foreignBook: `product/sach/sachngoaingu`,
-        stationery: `product/vpp/dungcuvanphong`,
-        psychology: `product/sach/tamlikinangsong`,
-        educationalToy: `product/dochoi/giaoduc`,
-        model: `product/dochoi/mohinh`,
-        butviet:  `product/vpp/butviet`,
-         giay: `product/vpp/sanphamgiay`
+        nike_nam: `products/nike/nike_nam`,
+        nike_nu: `products/nike/nike_nu`,
+        adidas_nam: `products/adidas/adidas_nam`,
+        adidas_nu: `products/adidas/adidas_nu`,
+        daygiay: `products/other_brand/daygiay`,
+        vs_giay: `products/other_brand/vs_giay`
     };
 
     let docRef;
@@ -100,84 +98,30 @@ async function updateProduct(event) {
         price: parseFloat(document.getElementById('price').value)
     };
 
-    // Kiểm tra giá
+    // Kiểm tra giá hợp lệ
     if (isNaN(productData.price)) {
         alert("Giá không hợp lệ. Vui lòng nhập giá bằng số.");
         return;
     }
 
-    const imageFile = document.getElementById('imageFile').files[0]; // Lấy tệp từ input
+    // Lấy URL hình ảnh cũ từ Firestore (nếu có)
+    const docRef = doc(db, `products/nike/nike_nam`, productId); // Thay đường dẫn nếu cần
+    const docSnap = await getDoc(docRef);
 
-    let imagePath = ''; // Đường dẫn lưu hình ảnh
-
-    // Xác định đường dẫn lưu hình ảnh dựa trên loại sản phẩm
-    const productType = document.getElementById('productType').value; // Giả sử bạn có một input để chọn loại sản phẩm
-    if (productType === 'comic') {
-        imagePath = 'image/sach/comic/';
-    } else if (productType === 'foreignBook') {
-        imagePath = 'image/sach/sachngoaingu/';
-    } else if (productType === 'psychology') {
-        imagePath = 'image/sach/tamlikinangsong/';
-    } else if (productType === 'stationery') {
-        imagePath = 'image/vpp/dungcuvanphong/';
-    } else if (productType === 'educationalToy') {
-        imagePath = 'image/dochoi/giaoduc/'; // Đường dẫn cho Đồ chơi giáo dục
-    } else if (productType === 'model') {
-        imagePath = 'image/dochoi/mohinh/'; // Đường dẫn cho Mô hình
-    } else if(productType === 'butviet'){
-        imagePath ='image/vpp/butviet/';
-    } else if(productType === 'giay'){
-        imagePath ='image/vpp/sanphamgiay/';
-    }
-
-    if (imageFile) {
-        try {
-            // Tải tệp lên Firebase Storage
-
-            const storageRef = ref(storage, `${imagePath}${Date.now()}_${imageFile.name}`); // Tạo tên file duy nhất // Tạo tên file duy nhất
-
-            await uploadBytes(storageRef, imageFile);
-            const imageURL = await getDownloadURL(storageRef);
-            productData.imageURL = imageURL; // Cập nhật URL hình ảnh mới
-        } catch (error) {
-            console.error("Lỗi khi tải lên tệp:", error);
-            alert("Đã xảy ra lỗi khi tải tệp lên Firebase Storage.");
-            return;
-        }
+    if (docSnap.exists()) {
+        productData.imageURL = docSnap.data().imageURL; // Giữ nguyên ảnh cũ
     } else {
-        // Lấy URL hình ảnh cũ nếu không có tệp mới
-        const docRef = doc(db, `product/sach/comic`, productId); // Thay đường dẫn nếu cần
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-            productData.imageURL = docSnap.data().imageURL;
-        }
+        productData.imageURL = ""; // Hoặc đặt giá trị mặc định nếu không có ảnh
     }
 
-    const collectionPaths = {
-        comic: `product/sach/comic`,
-        foreignBook: `product/sach/sachngoaingu`,
-        stationery: `product/vpp/dungcuvanphong`,
-        psychology: `product/sach/tamlikinangsong`,
-        educationalToy: `product/dochoi/giaoduc`,
-        model: `product/dochoi/mohinh`,
-        butviet:  `product/vpp/butviet`,
-        giay: `product/vpp/sanphamgiay`
-    };
-
-    let docRef;
-
-    for (const path of Object.values(collectionPaths)) {
-        docRef = doc(db, path, productId);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-            await updateDoc(docRef, productData);
-            alert("Sản phẩm đã được cập nhật.");
-            window.location.href = 'admin_selecttoadd.html';
-            return;
-        }
+    // Cập nhật dữ liệu lên Firestore (KHÔNG thay đổi ảnh)
+    try {
+        await updateDoc(docRef, productData);
+        alert("Cập nhật sản phẩm thành công!");
+    } catch (error) {
+        console.error("Lỗi khi cập nhật sản phẩm:", error);
+        alert("Đã xảy ra lỗi khi cập nhật sản phẩm.");
     }
-
-    alert("Không tìm thấy sản phẩm để cập nhật.");
 }
 
 // Gán sự kiện cho nút xóa

@@ -1,17 +1,3 @@
-// Kiểm tra trạng thái đăng nhập của admin
-function checkAdminLogin() {
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    
-    if (isLoggedIn !== 'true') {
-        // Nếu admin chưa đăng nhập, chuyển hướng đến trang login
-        window.location.href = "../login-admin/Loginadmin.html";
-    } else {
-        const adminname = localStorage.getItem('adminname');
-        if (adminname) {
-            console.log("Admin đã đăng nhập:", adminname);
-        }
-    }
-}
 
 // Kiểm tra đăng nhập khi tải trang admin
 window.onload = checkAdminLogin;
